@@ -1,0 +1,54 @@
+question_problem,option_1,option_2,option_3,option_4
+What does `pd.read_csv()` function do?,Reads a CSV file and returns a DataFrame,Creates a new CSV file,Removes the CSV file from disk,Converts CSV data into a list
+How do you select a column from a DataFrame?,df.column_name,df['column_name'],df.select('column_name'),All of the above
+Which method is used to remove rows with missing values from a DataFrame?,dropna(),fillna(),replace(),drop_duplicates()
+How do you rename columns in a Pandas DataFrame?,df.rename(columns={'old_name': 'new_name'}),df.update(columns={'old_name': 'new_name'}),df.columns = ['new_name'],df.rename_column('old_name', 'new_name')
+What does `df.groupby()` do in Pandas?,Groups data based on a specified column,Sorts data by values,Creates a new DataFrame,Adds a new column to the DataFrame
+Which method can be used to check for missing data in a DataFrame?,isnull(),isna(),both isnull() and isna(),dropna()
+What is the default index in a Pandas DataFrame?,An integer index starting from 0,Random index based on data values,No index,It uses the first column of the DataFrame as the index
+How do you merge two DataFrames in Pandas?,Using `pd.merge()` ,Using `df.merge()` ,Using `pd.concat()` ,Using `df.join()`
+What does `df.sort_values()` do?,Sorts rows by the values in one or more columns,Sorts columns by name,Sorts rows alphabetically,Filters rows based on a condition
+Which of the following functions is used to get basic statistics of a DataFrame?,describe(),summary(),info(),statistics()
+What function is used to write a DataFrame to a CSV file?,df.to_csv(),df.write_csv(),df.save_csv(),df.export_csv()
+Which of the following is used to check the data types of columns in a DataFrame?,df.dtypes(),df.columns(),df.info(),df.describe()
+What does `df.loc[]` do?,Accesses rows and columns by labels,Accesses rows and columns by index positions,Filters rows based on a condition,Adds new rows to the DataFrame
+What does `df.iloc[]` do?,Accesses rows and columns by index positions,Accesses rows and columns by labels,Filters rows based on a condition,Modifies the values of a row
+How do you add a new row to an existing DataFrame?,df.append(),df.add(),df.insert(),df.concat()
+Which method is used to replace missing values in a DataFrame?,fillna(),dropna(),replace(),interpolate()
+What does `df.drop()` do?,Removes rows or columns from a DataFrame,Renames a column,Creates a new DataFrame with added columns,Sorts the DataFrame
+How do you check the number of rows and columns in a DataFrame?,df.shape(),df.size(),df.count(),df.info()
+What is the function used to remove duplicates from a DataFrame?,drop_duplicates(),dropna(),unique(),remove_duplicates()
+Which of the following functions is used to concatenate two DataFrames?,pd.concat(),df.merge(),df.join(),pd.merge()
+How do you convert a column to datetime format?,pd.to_datetime(),df.to_datetime(),datetime.strptime(),df.astype('datetime')
+What method is used to compute a cumulative sum in Pandas?,cumsum(),sum(),cumprod(),aggregate()
+Which function is used to get the first N rows of a DataFrame?,head(),tail(),first(),top()
+How do you filter a DataFrame based on multiple conditions?,df[(condition1) & (condition2)],df[(condition1) | (condition2)],df[condition1, condition2],df[condition1 && condition2]
+What method is used to set the index of a DataFrame?,df.set_index(),df.index(),df.set_labels(),df.index_column()
+How do you check if a DataFrame contains any null values?,df.isnull().any(),df.isna().sum(),df.hasnull(),df.check_null()
+Which method can be used to create a DataFrame from a dictionary?,pd.DataFrame(),df.create(),dict.to_dataframe(),df.from_dict()
+Which method is used to round numerical values in a DataFrame?,round(),df.round(),df.ceil(),df.floor()
+How do you select multiple columns from a DataFrame?,df[['col1', 'col2']],df.select(['col1', 'col2']),df['col1', 'col2'],df[['col1', 'col2']]
+What does `df.duplicated()` do?,Checks for duplicate rows in the DataFrame,Removes duplicate rows,Finds duplicate column names,Counts the number of duplicate values
+Which method is used to create a copy of a DataFrame?,df.copy(),df.duplicate(),df.clone(),df.save()
+How do you count the number of unique values in a column?,df['col'].nunique(),df['col'].count(),df['col'].unique(),df['col'].value_counts()
+What does `df.pivot_table()` do?,Creates a pivot table based on a DataFrame,Groups data by values,Filters the data,Sorts the DataFrame
+Which function is used to calculate the mean of a column?,df['col'].mean(),df['col'].avg(),df['col'].sum(),df['col'].median()
+How do you rename the index of a DataFrame?,df.rename_axis(),df.set_index(),df.rename(),df.update_index()
+Which function can be used to get the column names of a DataFrame?,df.columns(),df.keys(),df.names(),df.headers()
+What method is used to concatenate two Series?,pd.concat(),df.merge(),df.join(),pd.merge()
+How do you apply a function along a row or column?,df.apply(),df.applymap(),df.func(),df.map()
+What method is used to transpose a DataFrame?,df.transpose(),df.T(),df.switch(),df.flip()
+What does `df.corr()` calculate?,The correlation between numerical columns in a DataFrame,The sum of numerical values,The mean of numerical values,The standard deviation of numerical values
+Which function is used to get the unique values in a column?,df['col'].unique(),df['col'].nunique(),df['col'].count_unique(),df['col'].distinct()
+How do you check the shape of a DataFrame?,df.shape(),df.size(),df.info(),df.dimensions()
+What is used to create a DataFrame from a list of dictionaries?,pd.DataFrame(),df.create(),dict.to_dataframe(),df.from_list()
+How do you convert a DataFrame to a dictionary?,df.to_dict(),df.as_dict(),dict(df),df.convert()
+What method is used to calculate the standard deviation of a column?,df['col'].std(),df['col'].stdev(),df['col'].variance(),df['col'].avg()
+How do you handle outliers in a DataFrame?,Remove or cap the outlier values,Keep them as they are,Replace them with the mean,Normalize the entire column
+Which function is used to check if a DataFrame is empty?,df.empty(),df.isnull(),df.is_empty(),df.check_empty()
+How do you change the data type of a column?,df['col'].astype(),df['col'].convert(),df['col'].type(),df['col'].cast()
+What does `df.resample()` do?,Resamples a time series DataFrame,Resets the index,Adds rows to the DataFrame,Creates a new DataFrame with missing values
+Which method is used to get the last N rows of a DataFrame?,tail(),head(),last(),bottom()
+How do you create a DataFrame from a list?,pd.DataFrame(list),df.from_list(list),df.create(list),pd.create(list)
+What method is used to get a summary of a DataFrame?,df.describe(),df.summary(),df.overview(),df.stats()
+How do you check the memory usage of a DataFrame?,df.memory_usage(),df.info(),df.size(),df.describe()
