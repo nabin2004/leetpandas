@@ -121,17 +121,25 @@ const App = () => {
       }}
     >
       <Layout style={{ minHeight: '100vh' }}>
-        <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
-          <div className="demo-logo-vertical" />
-       
-          <Menu
-            theme="dark"
-            defaultSelectedKeys={['1']}
-            mode="inline"
-            items={items}
-            onClick={onMenuClick}
-          />
-        </Sider>
+      <Sider 
+  theme="dark" 
+  collapsible 
+  collapsed={collapsed} 
+  onCollapse={(value) => setCollapsed(value)}
+  style={{ backgroundColor: '#000' }} 
+>
+  <div className="demo-logo-vertical" />
+  
+  <Menu
+    theme="dark"
+    defaultSelectedKeys={['1']}
+    mode="inline"
+    items={items}
+    onClick={onMenuClick}
+    style={{ backgroundColor: '#000', color: '#fff' }} 
+  />
+</Sider>
+
         <Layout>
         <Header style={{ padding: 0, background: colorBgContainer, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
 
