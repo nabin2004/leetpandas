@@ -3,7 +3,7 @@ import {
   DesktopOutlined,
   FileOutlined,
   PieChartOutlined,
-    VideoCameraOutlined,
+  VideoCameraOutlined,
   UserOutlined,
 } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
@@ -31,6 +31,7 @@ const items = [
     getItem('with Peers', '8'),
   ]),
   getItem('Resume Analyzer', '9', <FileOutlined />),
+  getItem('About', '10', <PieChartOutlined />), // New About Menu Item
 ];
 
 // Components for each route
@@ -40,6 +41,7 @@ const Leaderboard = () => <div>Leaderboard Page</div>;
 const InterviewWithAI = () => <div>Interview with AI Page</div>;
 const InterviewWithPeers = () => <div>Interview with Peers Page</div>;
 const ResumeAnalyzer = () => <div>Resume Analyzer Page</div>;
+const About = () => <div>About LeetPandas: Learn more about our mission and team.</div>; // New About Component
 
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -69,6 +71,9 @@ const App = () => {
       case '9':
         navigate('/resume-analyzer');
         break;
+      case '10':
+        navigate('/about');
+        break; // New About Navigation
       default:
         break;
     }
@@ -83,7 +88,6 @@ const App = () => {
           alt="Logo"
           style={{ width: '100%', padding: '5px' }}
         />
-        <div />
         <Menu
           theme="dark"
           defaultSelectedKeys={['1']}
@@ -96,7 +100,7 @@ const App = () => {
         <Header style={{ padding: 0, background: colorBgContainer }} />
         <Content style={{ margin: '0 16px' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>Leetpandas</Breadcrumb.Item>
+            <Breadcrumb.Item>LeetPandas</Breadcrumb.Item>
           </Breadcrumb>
           <div
             style={{
@@ -113,6 +117,7 @@ const App = () => {
               <Route path="/interview/ai" element={<InterviewWithAI />} />
               <Route path="/interview/peers" element={<InterviewWithPeers />} />
               <Route path="/resume-analyzer" element={<ResumeAnalyzer />} />
+              <Route path="/about" element={<About />} /> {/* New About Route */}
             </Routes>
           </div>
         </Content>
