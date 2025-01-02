@@ -1,0 +1,84 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Container */
+.resume-analyzer-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+/* Title */
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Dropzone styling */
+.dropzone {
+    border: 2px dashed #007bff;
+    padding: 40px;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.dropzone:hover {
+    background-color: #f0f8ff;
+}
+
+.dropzone p {
+    font-size: 16px;
+    color: #007bff;
+}
+
+/* File info section */
+.file-info {
+    margin-top: 20px;
+}
+
+.toggle-mode {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.toggle-mode:hover {
+    background-color: #0056b3;
+}
+
+.pdf-preview {
+    margin-top: 20px;
+}
+
+.pdf-preview h3 {
+    font-size: 18px;
+    color: #333;
+}
+
+/* Analysis Section */
+.analysis-section {
+    margin-top: 30px;
+}
+
+.analysis-section h3 {
+    font-size: 22px;
+    color: #333;
+}
+
+.analysis-section p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+}

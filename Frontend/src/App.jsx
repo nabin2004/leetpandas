@@ -12,7 +12,7 @@ import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-route
 import Home from './pages/home'
 import Problems from './pages/problems';
 import Leaderboard from './pages/leaderboard';
-
+import ResumeAnalyzer from './pages/resumeanalyzer';
 
 
 
@@ -47,7 +47,6 @@ const items = [
 // Components for each route
 const InterviewWithAI = () => <div>Interview with AI Page</div>;
 const InterviewWithPeers = () => <div>Interview with Peers Page</div>;
-const ResumeAnalyzer = () => <div>Resume Analyzer Page</div>;
 const About = () => <div>About LeetPandas: Learn more about our mission and team.</div>; 
 
 const App = () => {
