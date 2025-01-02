@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-route
 
 import Home from './pages/home'
 import Problems from './pages/problems';
+import Leaderboard from './pages/leaderboard';
 
 
 
@@ -44,7 +45,6 @@ const items = [
 ];
 
 // Components for each route
-const Leaderboard = () => <div>Leaderboard Page</div>;
 const InterviewWithAI = () => <div>Interview with AI Page</div>;
 const InterviewWithPeers = () => <div>Interview with Peers Page</div>;
 const ResumeAnalyzer = () => <div>Resume Analyzer Page</div>;
