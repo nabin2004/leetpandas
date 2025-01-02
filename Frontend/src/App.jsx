@@ -5,8 +5,15 @@ import {
   PieChartOutlined,
   VideoCameraOutlined,
   UserOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  HomeOutlined,
+  IssuesCloseOutlined,
+  LayoutOutlined,
+  InfoCircleOutlined,
+  CodeOutlined
 } from '@ant-design/icons';
-import { Breadcrumb, Layout, Menu, theme, ConfigProvider, Space } from 'antd';
+import { Breadcrumb, Layout, Menu, theme, ConfigProvider, Button } from 'antd'; // Added Button import
 import { BrowserRouter as Router, Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 
 import Home from './pages/home';
@@ -15,6 +22,16 @@ import Leaderboard from './pages/leaderboard';
 import ResumeAnalyzer from './pages/resumeanalyzer';
 
 const { Header, Content, Footer, Sider } = Layout;
+
+const siderStyle = {
+  backgroundColor: '#000',
+  insetInlineStart: 0,
+  top: 0,
+  bottom: 0,
+  scrollbarWidth: 'thin',
+  scrollbarGutter: 'stable',
+  
+};
 
 // Helper function for menu items
 function getItem(label, key, icon, children) {
@@ -28,15 +45,16 @@ function getItem(label, key, icon, children) {
 
 // Menu items with routing keys
 const items = [
-  getItem('Home', '1', <PieChartOutlined />),
-  getItem('Problems', '2', <DesktopOutlined />),
-  getItem('Leaderboard', '3', <UserOutlined />),
+  
+  getItem('Home', '1', <HomeOutlined />),
+  getItem('Problems', '2', <CodeOutlined />),
+  getItem('Leaderboard', '3', <LayoutOutlined />),
   getItem('Interview', 'sub2', <VideoCameraOutlined />, [
     getItem('with AI', '6'),
     getItem('with Peers', '8'),
   ]),
   getItem('Resume Analyzer', '9', <FileOutlined />),
-  getItem('About', '10', <PieChartOutlined />),
+  getItem('About', '10', <InfoCircleOutlined />),
 ];
 
 // Components for each route
@@ -120,40 +138,44 @@ const App = () => {
         },
       }}
     >
-      <Layout style={{ minHeight: '100vh' }}>
-      <Sider 
-  theme="dark" 
-  collapsible 
-  collapsed={collapsed} 
-  onCollapse={(value) => setCollapsed(value)}
-  style={{ backgroundColor: '#000' }} 
->
-  <div className="demo-logo-vertical" />
-  
-  <Menu
-    theme="dark"
-    defaultSelectedKeys={['1']}
-    mode="inline"
-    items={items}
-    onClick={onMenuClick}
-    style={{ backgroundColor: '#000', color: '#fff' }} 
-  />
-</Sider>
+      <Layout style={{ minHeight: '100vh'}} hasSider>
+        <Sider 
+          theme="dark" 
+          collapsible 
+          collapsed={collapsed} 
+          onCollapse={(value) => setCollapsed(value)}
+          style={siderStyle}
+        >
+          <div className="demo-logo-vertical" />
+          
+          <Menu
+            theme="dark"
+            defaultSelectedKeys={['1']}
+            mode="inline"
+            items={items}
+            onClick={onMenuClick}
+            style={{ backgroundColor: '#000', color: '#fff' }} 
+          />
+        </Sider>
 
         <Layout>
-        <Header style={{ padding: 0, background: colorBgContainer, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <Header style={{ padding: 0, color: colorBgContainer, background: colorBgContainer, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+  
+            
+            <div style={{ padding: '0 16px' }}>
 
-  <div style={{ padding: '0 16px' }}>
-  <img
-      src="/logo.svg"
-      alt="Logo"
-      style={{ width: '15%', padding: '5px' }}
-          />
-  </div>
+              
+              <img
+                src="/logo.svg"
+                alt="Logo"
+                style={{ width: '15%', padding: '5px' }}
+              />
+            </div>
 
-</Header>
+  
+          </Header>
 
-          <Content style={{ margin: '0 16px' }}>
+          <Content style={{ margin: '0 16px', marginTop: '24px', overflow: 'initial' }}>
             <Breadcrumb style={{ margin: '16px 0' }}>{breadcrumbItems}</Breadcrumb>
             <div
               style={{
@@ -174,6 +196,7 @@ const App = () => {
               </Routes>
             </div>
           </Content>
+
           <Footer style={{ textAlign: 'center' }}>
             LeetPandas ©{new Date().getFullYear()} Created by LeetPandas Team
           </Footer>
