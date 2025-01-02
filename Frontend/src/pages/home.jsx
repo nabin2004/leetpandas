@@ -6,8 +6,8 @@ const { Title, Paragraph } = Typography;
 const Home = () => {
     return (
         <Flex vertical>
-            <main style={{ padding: '20px', background: '#f5f5f5' }}>
-      <Title level={2} style={{  marginBottom: '24px' }}>
+            <main style={{ padding: '20px'}}>
+      <Title level={3} style={{  marginBottom: '24px' }}>
         Hi Nabin,
       </Title>
       <Paragraph style={{ fontSize: '16px', marginBottom: '40px' }}>
@@ -17,7 +17,7 @@ const Home = () => {
         <Col xs={24} sm={12} md={8} lg={6}>
           <Card
             title="Pandas Interview Preparation"
-            bordered={false}
+            bordered={true}
             hoverable
             style={{ width: '100%' }}
             cover={<img alt="interview" src="https://via.placeholder.com/300x150" />}
@@ -31,7 +31,7 @@ const Home = () => {
         <Col xs={24} sm={12} md={8} lg={6}>
           <Card
             title="Python Quiz"
-            bordered={false}
+            bordered={true}
             hoverable
             style={{ width: '100%' }}
             cover={<img alt="quiz" src="https://via.placeholder.com/300x150" />}
@@ -45,7 +45,7 @@ const Home = () => {
         <Col xs={24} sm={12} md={8} lg={6}>
           <Card
             title="Top Interview Questions"
-            bordered={false}
+            bordered={true}
             hoverable
             style={{ width: '100%' }}
             cover={<img alt="questions" src="https://via.placeholder.com/300x150" />}
@@ -59,7 +59,7 @@ const Home = () => {
         <Col xs={24} sm={12} md={8} lg={6}>
           <Card
             title="Resume Analyzer"
-            bordered={false}
+            bordered={true}
             hoverable
             style={{ width: '100%' }}
             cover={<img alt="resume" src="https://via.placeholder.com/300x150" />}

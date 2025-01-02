@@ -134,6 +134,7 @@ const App = () => {
         </Sider>
         <Layout>
         <Header style={{ padding: 0, background: colorBgContainer, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+
   <div style={{ padding: '0 16px' }}>
   <img
       src="../public/logo.svg"
