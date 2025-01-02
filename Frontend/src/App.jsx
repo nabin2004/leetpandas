@@ -3,7 +3,7 @@ import {
   DesktopOutlined,
   FileOutlined,
   PieChartOutlined,
-  TeamOutlined,
+    VideoCameraOutlined,
   UserOutlined,
 } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
@@ -26,7 +26,7 @@ const items = [
   getItem('Home', '1', <PieChartOutlined />),
   getItem('Problems', '2', <DesktopOutlined />),
   getItem('Leaderboard', '3', <UserOutlined />),
-  getItem('Interview', 'sub2', <TeamOutlined />, [
+  getItem('Interview', 'sub2', <VideoCameraOutlined />, [
     getItem('with AI', '6'),
     getItem('with Peers', '8'),
   ]),
@@ -76,7 +76,7 @@ const App = () => {
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
+      <Sider trigger={null} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
         <div className="demo-logo-vertical" />
         <img
           src="../public/logo.svg"
@@ -117,7 +117,7 @@ const App = () => {
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>
-          Ant Design ©{new Date().getFullYear()} Created by Ant UED
+          LeetPandas ©{new Date().getFullYear()} Created by LeetPandas Team
         </Footer>
       </Layout>
     </Layout>
