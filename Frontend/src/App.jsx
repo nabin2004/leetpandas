@@ -9,7 +9,15 @@ import {
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 
+import Home from './pages/home'
+
+
+
+
 const { Header, Content, Footer, Sider } = Layout;
+
+
+
 
 // Helper function for menu items
 function getItem(label, key, icon, children) {
@@ -35,13 +43,13 @@ const items = [
 ];
 
 // Components for each route
-const Home = () => <div>Welcome to Home Page</div>;
+
 const Problems = () => <div>Problems Page</div>;
 const Leaderboard = () => <div>Leaderboard Page</div>;
 const InterviewWithAI = () => <div>Interview with AI Page</div>;
 const InterviewWithPeers = () => <div>Interview with Peers Page</div>;
 const ResumeAnalyzer = () => <div>Resume Analyzer Page</div>;
-const About = () => <div>About LeetPandas: Learn more about our mission and team.</div>; // New About Component
+const About = () => <div>About LeetPandas: Learn more about our mission and team.</div>; 
 
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
