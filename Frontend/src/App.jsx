@@ -6,7 +6,7 @@ import {
   VideoCameraOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import { Breadcrumb, Layout, Menu, theme, ConfigProvider } from 'antd';
+import { Breadcrumb, Layout, Menu, theme, ConfigProvider, Space } from 'antd';
 import { BrowserRouter as Router, Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 
 import Home from './pages/home';
@@ -123,11 +123,7 @@ const App = () => {
       <Layout style={{ minHeight: '100vh' }}>
         <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
           <div className="demo-logo-vertical" />
-          <img
-            src="../public/logo.svg"
-            alt="Logo"
-            style={{ width: '100%', padding: '5px' }}
-          />
+       
           <Menu
             theme="dark"
             defaultSelectedKeys={['1']}
@@ -137,7 +133,17 @@ const App = () => {
           />
         </Sider>
         <Layout>
-          <Header style={{ padding: 0, background: colorBgContainer }} />
+        <Header style={{ padding: 0, background: colorBgContainer, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+  <div style={{ padding: '0 16px' }}>
+  <img
+      src="../public/logo.svg"
+      alt="Logo"
+      style={{ width: '15%', padding: '5px' }}
+          />
+  </div>
+
+</Header>
+
           <Content style={{ margin: '0 16px' }}>
             <Breadcrumb style={{ margin: '16px 0' }}>{breadcrumbItems}</Breadcrumb>
             <div
