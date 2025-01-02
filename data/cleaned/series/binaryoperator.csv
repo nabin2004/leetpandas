@@ -1,0 +1,85 @@
+
+Binary operator functions#
+
+
+Series.add(other[, level, fill_value, axis])
+Return Addition of series and other, element-wise (binary operator add).
+
+Series.sub(other[, level, fill_value, axis])
+Return Subtraction of series and other, element-wise (binary operator sub).
+
+Series.mul(other[, level, fill_value, axis])
+Return Multiplication of series and other, element-wise (binary operator mul).
+
+Series.div(other[, level, fill_value, axis])
+Return Floating division of series and other, element-wise (binary operator truediv).
+
+Series.truediv(other[, level, fill_value, axis])
+Return Floating division of series and other, element-wise (binary operator truediv).
+
+Series.floordiv(other[, level, fill_value, axis])
+Return Integer division of series and other, element-wise (binary operator floordiv).
+
+Series.mod(other[, level, fill_value, axis])
+Return Modulo of series and other, element-wise (binary operator mod).
+
+Series.pow(other[, level, fill_value, axis])
+Return Exponential power of series and other, element-wise (binary operator pow).
+
+Series.radd(other[, level, fill_value, axis])
+Return Addition of series and other, element-wise (binary operator radd).
+
+Series.rsub(other[, level, fill_value, axis])
+Return Subtraction of series and other, element-wise (binary operator rsub).
+
+Series.rmul(other[, level, fill_value, axis])
+Return Multiplication of series and other, element-wise (binary operator rmul).
+
+Series.rdiv(other[, level, fill_value, axis])
+Return Floating division of series and other, element-wise (binary operator rtruediv).
+
+Series.rtruediv(other[, level, fill_value, axis])
+Return Floating division of series and other, element-wise (binary operator rtruediv).
+
+Series.rfloordiv(other[, level, fill_value, ...])
+Return Integer division of series and other, element-wise (binary operator rfloordiv).
+
+Series.rmod(other[, level, fill_value, axis])
+Return Modulo of series and other, element-wise (binary operator rmod).
+
+Series.rpow(other[, level, fill_value, axis])
+Return Exponential power of series and other, element-wise (binary operator rpow).
+
+Series.combine(other, func[, fill_value])
+Combine the Series with a Series or scalar according to func.
+
+Series.combine_first(other)
+Update null elements with value in the same location in 'other'.
+
+Series.round([decimals])
+Round each value in a Series to the given number of decimals.
+
+Series.lt(other[, level, fill_value, axis])
+Return Less than of series and other, element-wise (binary operator lt).
+
+Series.gt(other[, level, fill_value, axis])
+Return Greater than of series and other, element-wise (binary operator gt).
+
+Series.le(other[, level, fill_value, axis])
+Return Less than or equal to of series and other, element-wise (binary operator le).
+
+Series.ge(other[, level, fill_value, axis])
+Return Greater than or equal to of series and other, element-wise (binary operator ge).
+
+Series.ne(other[, level, fill_value, axis])
+Return Not equal to of series and other, element-wise (binary operator ne).
+
+Series.eq(other[, level, fill_value, axis])
+Return Equal to of series and other, element-wise (binary operator eq).
+
+Series.product([axis, skipna, numeric_only, ...])
+Return the product of the values over the requested axis.
+
+Series.dot(other)
+Compute the dot product between the Series and the columns of other.
+

@@ -1,0 +1,32 @@
+Conversion
+
+Series.astype(dtype[, copy, errors])
+Cast a pandas object to a specified dtype dtype.
+
+Series.convert_dtypes([infer_objects, ...])
+Convert columns to the best possible dtypes using dtypes supporting pd.NA.
+
+Series.infer_objects([copy])
+Attempt to infer better dtypes for object columns.
+
+Series.copy([deep])
+Make a copy of this object's indices and data.
+
+Series.bool()
+(DEPRECATED) Return the bool of a single element Series or DataFrame.
+
+Series.to_numpy([dtype, copy, na_value])
+A NumPy ndarray representing the values in this Series or Index.
+
+Series.to_period([freq, copy])
+Convert Series from DatetimeIndex to PeriodIndex.
+
+Series.to_timestamp([freq, how, copy])
+Cast to DatetimeIndex of Timestamps, at beginning of period.
+
+Series.to_list()
+Return a list of the values.
+
+Series.__array__([dtype, copy])
+Return the values as a NumPy array.
+

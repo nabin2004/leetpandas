@@ -1,0 +1,8 @@
+Combining / comparing / joining / merging#
+
+
+Series.compare(other[, align_axis, ...])
+Compare to another Series and show the differences.
+
+Series.update(other)
+Modify Series in place using values from passed Series.

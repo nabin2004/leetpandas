@@ -1,0 +1,44 @@
+Reshaping, sorting#
+
+
+Series.argsort([axis, kind, order, stable])
+Return the integer indices that would sort the Series values.
+
+Series.argmin([axis, skipna])
+Return int position of the smallest value in the Series.
+
+Series.argmax([axis, skipna])
+Return int position of the largest value in the Series.
+
+Series.reorder_levels(order)
+Rearrange index levels using input order.
+
+Series.sort_values(*[, axis, ascending, ...])
+Sort by the values.
+
+Series.sort_index(*[, axis, level, ...])
+Sort Series by index labels.
+
+Series.swaplevel([i, j, copy])
+Swap levels i and j in a MultiIndex.
+
+Series.unstack([level, fill_value, sort])
+Unstack, also known as pivot, Series with MultiIndex to produce DataFrame.
+
+Series.explode([ignore_index])
+Transform each element of a list-like to a row.
+
+Series.searchsorted(value[, side, sorter])
+Find indices where elements should be inserted to maintain order.
+
+Series.ravel([order])
+(DEPRECATED) Return the flattened underlying data as an ndarray or ExtensionArray.
+
+Series.repeat(repeats[, axis])
+Repeat elements of a Series.
+
+Series.squeeze([axis])
+Squeeze 1 dimensional axis objects into scalars.
+
+Series.view([dtype])
+(DEPRECATED) Create a new view of the Series.

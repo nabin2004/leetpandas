@@ -1,0 +1,17 @@
+Struct accessor#
+Arrow struct-dtype specific methods and attributes are provided under the
+Series.struct accessor.
+
+
+Series.struct.dtypes
+Return the dtype object of each child field of the struct.
+
+
+
+
+
+Series.struct.field(name_or_index)
+Extract a child field of a struct as a Series.
+
+Series.struct.explode()
+Extract all child fields of a struct as a DataFrame.

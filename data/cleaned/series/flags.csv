@@ -1,0 +1,23 @@
+Flags#
+Flags refer to attributes of the pandas object. Properties of the dataset (like
+the date is was recorded, the URL it was accessed from, etc.) should be stored
+in Series.attrs.
+
+
+Flags(obj, *, allows_duplicate_labels)
+Flags that apply to pandas objects.
+
+
+
+
+
+Metadata#
+Series.attrs is a dictionary for storing global metadata for this Series.
+
+Warning
+Series.attrs is considered experimental and may change without warning.
+
+
+
+Series.attrs
+Dictionary of global attributes of this dataset.

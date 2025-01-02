@@ -1,0 +1,45 @@
+Plotting#
+Series.plot is both a callable method and a namespace attribute for
+specific plotting methods of the form Series.plot.<kind>.
+
+
+Series.plot([kind, ax, figsize, ....])
+Series plotting accessor and method
+
+
+
+
+
+Series.plot.area([x, y, stacked])
+Draw a stacked area plot.
+
+Series.plot.bar([x, y])
+Vertical bar plot.
+
+Series.plot.barh([x, y])
+Make a horizontal bar plot.
+
+Series.plot.box([by])
+Make a box plot of the DataFrame columns.
+
+Series.plot.density([bw_method, ind])
+Generate Kernel Density Estimate plot using Gaussian kernels.
+
+Series.plot.hist([by, bins])
+Draw one histogram of the DataFrame's columns.
+
+Series.plot.kde([bw_method, ind])
+Generate Kernel Density Estimate plot using Gaussian kernels.
+
+Series.plot.line([x, y])
+Plot Series or DataFrame as lines.
+
+Series.plot.pie(**kwargs)
+Generate a pie plot.
+
+
+
+
+
+Series.hist([by, ax, grid, xlabelsize, ...])
+Draw histogram of the input series using matplotlib.

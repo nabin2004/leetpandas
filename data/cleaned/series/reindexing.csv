@@ -1,0 +1,86 @@
+Reindexing / selection / label manipulation#
+
+
+Series.align(other[, join, axis, level, ...])
+Align two objects on their axes with the specified join method.
+
+Series.case_when(caselist)
+Replace values where the conditions are True.
+
+Series.drop([labels, axis, index, columns, ...])
+Return Series with specified index labels removed.
+
+Series.droplevel(level[, axis])
+Return Series/DataFrame with requested index / column level(s) removed.
+
+Series.drop_duplicates(*[, keep, inplace, ...])
+Return Series with duplicate values removed.
+
+Series.duplicated([keep])
+Indicate duplicate Series values.
+
+Series.equals(other)
+Test whether two objects contain the same elements.
+
+Series.first(offset)
+(DEPRECATED) Select initial periods of time series data based on a date offset.
+
+Series.head([n])
+Return the first n rows.
+
+Series.idxmax([axis, skipna])
+Return the row label of the maximum value.
+
+Series.idxmin([axis, skipna])
+Return the row label of the minimum value.
+
+Series.isin(values)
+Whether elements in Series are contained in values.
+
+Series.last(offset)
+(DEPRECATED) Select final periods of time series data based on a date offset.
+
+Series.reindex([index, axis, method, copy, ...])
+Conform Series to new index with optional filling logic.
+
+Series.reindex_like(other[, method, copy, ...])
+Return an object with matching indices as other object.
+
+Series.rename([index, axis, copy, inplace, ...])
+Alter Series index labels or name.
+
+Series.rename_axis([mapper, index, axis, ...])
+Set the name of the axis for the index or columns.
+
+Series.reset_index([level, drop, name, ...])
+Generate a new DataFrame or Series with the index reset.
+
+Series.sample([n, frac, replace, weights, ...])
+Return a random sample of items from an axis of object.
+
+Series.set_axis(labels, *[, axis, copy])
+Assign desired index to given axis.
+
+Series.take(indices[, axis])
+Return the elements in the given positional indices along an axis.
+
+Series.tail([n])
+Return the last n rows.
+
+Series.truncate([before, after, axis, copy])
+Truncate a Series or DataFrame before and after some index value.
+
+Series.where(cond[, other, inplace, axis, level])
+Replace values where the condition is False.
+
+Series.mask(cond[, other, inplace, axis, level])
+Replace values where the condition is True.
+
+Series.add_prefix(prefix[, axis])
+Prefix labels with string prefix.
+
+Series.add_suffix(suffix[, axis])
+Suffix labels with string suffix.
+
+Series.filter([items, like, regex, axis])
+Subset the dataframe rows or columns according to the specified index labels.

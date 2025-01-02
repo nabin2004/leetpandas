@@ -1,0 +1,122 @@
+Computations / descriptive stats#
+
+
+Series.abs()
+Return a Series/DataFrame with absolute numeric value of each element.
+
+Series.all([axis, bool_only, skipna])
+Return whether all elements are True, potentially over an axis.
+
+Series.any(*[, axis, bool_only, skipna])
+Return whether any element is True, potentially over an axis.
+
+Series.autocorr([lag])
+Compute the lag-N autocorrelation.
+
+Series.between(left, right[, inclusive])
+Return boolean Series equivalent to left <= series <= right.
+
+Series.clip([lower, upper, axis, inplace])
+Trim values at input threshold(s).
+
+Series.corr(other[, method, min_periods])
+Compute correlation with other Series, excluding missing values.
+
+Series.count()
+Return number of non-NA/null observations in the Series.
+
+Series.cov(other[, min_periods, ddof])
+Compute covariance with Series, excluding missing values.
+
+Series.cummax([axis, skipna])
+Return cumulative maximum over a DataFrame or Series axis.
+
+Series.cummin([axis, skipna])
+Return cumulative minimum over a DataFrame or Series axis.
+
+Series.cumprod([axis, skipna])
+Return cumulative product over a DataFrame or Series axis.
+
+Series.cumsum([axis, skipna])
+Return cumulative sum over a DataFrame or Series axis.
+
+Series.describe([percentiles, include, exclude])
+Generate descriptive statistics.
+
+Series.diff([periods])
+First discrete difference of element.
+
+Series.factorize([sort, use_na_sentinel])
+Encode the object as an enumerated type or categorical variable.
+
+Series.kurt([axis, skipna, numeric_only])
+Return unbiased kurtosis over requested axis.
+
+Series.max([axis, skipna, numeric_only])
+Return the maximum of the values over the requested axis.
+
+Series.mean([axis, skipna, numeric_only])
+Return the mean of the values over the requested axis.
+
+Series.median([axis, skipna, numeric_only])
+Return the median of the values over the requested axis.
+
+Series.min([axis, skipna, numeric_only])
+Return the minimum of the values over the requested axis.
+
+Series.mode([dropna])
+Return the mode(s) of the Series.
+
+Series.nlargest([n, keep])
+Return the largest n elements.
+
+Series.nsmallest([n, keep])
+Return the smallest n elements.
+
+Series.pct_change([periods, fill_method, ...])
+Fractional change between the current and a prior element.
+
+Series.prod([axis, skipna, numeric_only, ...])
+Return the product of the values over the requested axis.
+
+Series.quantile([q, interpolation])
+Return value at the given quantile.
+
+Series.rank([axis, method, numeric_only, ...])
+Compute numerical data ranks (1 through n) along axis.
+
+Series.sem([axis, skipna, ddof, numeric_only])
+Return unbiased standard error of the mean over requested axis.
+
+Series.skew([axis, skipna, numeric_only])
+Return unbiased skew over requested axis.
+
+Series.std([axis, skipna, ddof, numeric_only])
+Return sample standard deviation over requested axis.
+
+Series.sum([axis, skipna, numeric_only, ...])
+Return the sum of the values over the requested axis.
+
+Series.var([axis, skipna, ddof, numeric_only])
+Return unbiased variance over requested axis.
+
+Series.kurtosis([axis, skipna, numeric_only])
+Return unbiased kurtosis over requested axis.
+
+Series.unique()
+Return unique values of Series object.
+
+Series.nunique([dropna])
+Return number of unique elements in the object.
+
+Series.is_unique
+Return boolean if values in the object are unique.
+
+Series.is_monotonic_increasing
+Return boolean if values in the object are monotonically increasing.
+
+Series.is_monotonic_decreasing
+Return boolean if values in the object are monotonically decreasing.
+
+Series.value_counts([normalize, sort, ...])
+Return a Series containing counts of unique values.

@@ -1,0 +1,250 @@
+Accessors#
+pandas provides dtype-specific methods under various accessors.
+These are separate namespaces within Series that only apply
+to specific data types.
+
+
+Series.str
+alias of StringMethods
+
+Series.cat
+alias of CategoricalAccessor
+
+Series.dt
+alias of CombinedDatetimelikeProperties
+
+Series.sparse
+alias of SparseAccessor
+
+DataFrame.sparse
+alias of SparseFrameAccessor
+
+Index.str
+alias of StringMethods
+
+
+
+
+
+Data Type
+Accessor
+
+
+
+Datetime, Timedelta, Period
+dt
+
+String
+str
+
+Categorical
+cat
+
+Sparse
+sparse
+
+
+
+
+Datetimelike properties#
+Series.dt can be used to access the values of the series as
+datetimelike and return several properties.
+These can be accessed like Series.dt.<property>.
+
+Datetime properties#
+
+
+Series.dt.date
+Returns numpy array of python datetime.date objects.
+
+Series.dt.time
+Returns numpy array of datetime.time objects.
+
+Series.dt.timetz
+Returns numpy array of datetime.time objects with timezones.
+
+Series.dt.year
+The year of the datetime.
+
+Series.dt.month
+The month as January=1, December=12.
+
+Series.dt.day
+The day of the datetime.
+
+Series.dt.hour
+The hours of the datetime.
+
+Series.dt.minute
+The minutes of the datetime.
+
+Series.dt.second
+The seconds of the datetime.
+
+Series.dt.microsecond
+The microseconds of the datetime.
+
+Series.dt.nanosecond
+The nanoseconds of the datetime.
+
+Series.dt.dayofweek
+The day of the week with Monday=0, Sunday=6.
+
+Series.dt.day_of_week
+The day of the week with Monday=0, Sunday=6.
+
+Series.dt.weekday
+The day of the week with Monday=0, Sunday=6.
+
+Series.dt.dayofyear
+The ordinal day of the year.
+
+Series.dt.day_of_year
+The ordinal day of the year.
+
+Series.dt.days_in_month
+The number of days in the month.
+
+Series.dt.quarter
+The quarter of the date.
+
+Series.dt.is_month_start
+Indicates whether the date is the first day of the month.
+
+Series.dt.is_month_end
+Indicates whether the date is the last day of the month.
+
+Series.dt.is_quarter_start
+Indicator for whether the date is the first day of a quarter.
+
+Series.dt.is_quarter_end
+Indicator for whether the date is the last day of a quarter.
+
+Series.dt.is_year_start
+Indicate whether the date is the first day of a year.
+
+Series.dt.is_year_end
+Indicate whether the date is the last day of the year.
+
+Series.dt.is_leap_year
+Boolean indicator if the date belongs to a leap year.
+
+Series.dt.daysinmonth
+The number of days in the month.
+
+Series.dt.days_in_month
+The number of days in the month.
+
+Series.dt.tz
+Return the timezone.
+
+Series.dt.freq
+Return the frequency object for this PeriodArray.
+
+Series.dt.unit
+
+
+
+
+
+
+Datetime methods#
+
+
+Series.dt.isocalendar()
+Calculate year, week, and day according to the ISO 8601 standard.
+
+Series.dt.to_period(*args, **kwargs)
+Cast to PeriodArray/PeriodIndex at a particular frequency.
+
+Series.dt.to_pydatetime()
+(DEPRECATED) Return the data as an array of datetime.datetime objects.
+
+Series.dt.tz_localize(*args, **kwargs)
+Localize tz-naive Datetime Array/Index to tz-aware Datetime Array/Index.
+
+Series.dt.tz_convert(*args, **kwargs)
+Convert tz-aware Datetime Array/Index from one time zone to another.
+
+Series.dt.normalize(*args, **kwargs)
+Convert times to midnight.
+
+Series.dt.strftime(*args, **kwargs)
+Convert to Index using specified date_format.
+
+Series.dt.round(*args, **kwargs)
+Perform round operation on the data to the specified freq.
+
+Series.dt.floor(*args, **kwargs)
+Perform floor operation on the data to the specified freq.
+
+Series.dt.ceil(*args, **kwargs)
+Perform ceil operation on the data to the specified freq.
+
+Series.dt.month_name(*args, **kwargs)
+Return the month names with specified locale.
+
+Series.dt.day_name(*args, **kwargs)
+Return the day names with specified locale.
+
+Series.dt.as_unit(*args, **kwargs)
+
+
+
+
+
+
+Period properties#
+
+
+Series.dt.qyear
+
+
+Series.dt.start_time
+Get the Timestamp for the start of the period.
+
+Series.dt.end_time
+Get the Timestamp for the end of the period.
+
+
+
+
+
+Timedelta properties#
+
+
+Series.dt.days
+Number of days for each element.
+
+Series.dt.seconds
+Number of seconds (>= 0 and less than 1 day) for each element.
+
+Series.dt.microseconds
+Number of microseconds (>= 0 and less than 1 second) for each element.
+
+Series.dt.nanoseconds
+Number of nanoseconds (>= 0 and less than 1 microsecond) for each element.
+
+Series.dt.components
+Return a Dataframe of the components of the Timedeltas.
+
+Series.dt.unit
+
+
+
+
+
+
+Timedelta methods#
+
+
+Series.dt.to_pytimedelta()
+Return an array of native datetime.timedelta objects.
+
+Series.dt.total_seconds(*args, **kwargs)
+Return total duration of each element expressed in seconds.
+
+Series.dt.as_unit(*args, **kwargs)
+
+
+

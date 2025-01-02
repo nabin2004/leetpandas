@@ -1,0 +1,13 @@
+List accessor#
+Arrow list-dtype specific methods and attributes are provided under the
+Series.list accessor.
+
+
+Series.list.flatten()
+Flatten list values.
+
+Series.list.len()
+Return the length of each list in the Series.
+
+Series.list.__getitem__(key)
+Index or slice lists in the Series.

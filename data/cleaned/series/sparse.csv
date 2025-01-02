@@ -1,0 +1,22 @@
+Sparse accessor#
+Sparse-dtype specific methods and attributes are provided under the
+Series.sparse accessor.
+
+
+Series.sparse.npoints
+The number of non- fill_value points.
+
+Series.sparse.density
+The percent of non- fill_value points, as decimal.
+
+Series.sparse.fill_value
+Elements in data that are fill_value are not stored.
+
+Series.sparse.sp_values
+An ndarray containing the non- fill_value values.
+
+Series.sparse.from_coo(A[, dense_index])
+Create a Series with sparse values from a scipy.sparse.coo_matrix.
+
+Series.sparse.to_coo([row_levels, ...])
+Create a scipy.sparse.coo_matrix from a Series with MultiIndex.

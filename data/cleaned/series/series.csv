@@ -1,0 +1,47 @@
+Series.index
+The index (axis labels) of the Series.
+
+Series.array
+The ExtensionArray of the data backing this Series or Index.
+
+Series.values
+Return Series as ndarray or ndarray-like depending on the dtype.
+
+Series.dtype
+Return the dtype object of the underlying data.
+
+Series.shape
+Return a tuple of the shape of the underlying data.
+
+Series.nbytes
+Return the number of bytes in the underlying data.
+
+Series.ndim
+Number of dimensions of the underlying data, by definition 1.
+
+Series.size
+Return the number of elements in the underlying data.
+
+Series.T
+Return the transpose, which is by definition self.
+
+Series.memory_usage([index, deep])
+Return the memory usage of the Series.
+
+Series.hasnans
+Return True if there are any NaNs.
+
+Series.empty
+Indicator whether Series/DataFrame is empty.
+
+Series.dtypes
+Return the dtype object of the underlying data.
+
+Series.name
+Return the name of the Series.
+
+Series.flags
+Get the properties associated with this pandas object.
+
+Series.set_flags(*[, copy, ...])
+Return a new object with updated flags.

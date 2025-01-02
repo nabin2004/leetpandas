@@ -1,0 +1,41 @@
+Serialization / IO / conversion#
+
+
+Series.to_pickle(path, *[, compression, ...])
+Pickle (serialize) object to file.
+
+Series.to_csv([path_or_buf, sep, na_rep, ...])
+Write object to a comma-separated values (csv) file.
+
+Series.to_dict(*[, into])
+Convert Series to {label -> value} dict or dict-like object.
+
+Series.to_excel(excel_writer, *[, ...])
+Write object to an Excel sheet.
+
+Series.to_frame([name])
+Convert Series to DataFrame.
+
+Series.to_xarray()
+Return an xarray object from the pandas object.
+
+Series.to_hdf(path_or_buf, *, key[, mode, ...])
+Write the contained data to an HDF5 file using HDFStore.
+
+Series.to_sql(name, con, *[, schema, ...])
+Write records stored in a DataFrame to a SQL database.
+
+Series.to_json([path_or_buf, orient, ...])
+Convert the object to a JSON string.
+
+Series.to_string([buf, na_rep, ...])
+Render a string representation of the Series.
+
+Series.to_clipboard(*[, excel, sep])
+Copy object to the system clipboard.
+
+Series.to_latex([buf, columns, header, ...])
+Render object to a LaTeX tabular, longtable, or nested table.
+
+Series.to_markdown([buf, mode, index, ...])
+Print Series in Markdown-friendly format.

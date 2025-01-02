@@ -1,0 +1,32 @@
+Time Series-related#
+
+
+Series.asfreq(freq[, method, how, ...])
+Convert time series to specified frequency.
+
+Series.asof(where[, subset])
+Return the last row(s) without any NaNs before where.
+
+Series.shift([periods, freq, axis, ...])
+Shift index by desired number of periods with an optional time freq.
+
+Series.first_valid_index()
+Return index for first non-NA value or None, if no non-NA value is found.
+
+Series.last_valid_index()
+Return index for last non-NA value or None, if no non-NA value is found.
+
+Series.resample(rule[, axis, closed, label, ...])
+Resample time-series data.
+
+Series.tz_convert(tz[, axis, level, copy])
+Convert tz-aware axis to target time zone.
+
+Series.tz_localize(tz[, axis, level, copy, ...])
+Localize tz-naive index of a Series or DataFrame to target time zone.
+
+Series.at_time(time[, asof, axis])
+Select values at particular time of day (e.g., 9:30AM).
+
+Series.between_time(start_time, end_time[, ...])
+Select values between particular times of the day (e.g., 9:00-9:30 AM).

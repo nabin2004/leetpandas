@@ -137,7 +137,7 @@ const App = () => {
 
   <div style={{ padding: '0 16px' }}>
   <img
-      src="../public/logo.svg"
+      src="/logo.svg"
       alt="Logo"
       style={{ width: '15%', padding: '5px' }}
           />
