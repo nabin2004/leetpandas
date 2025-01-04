@@ -13,13 +13,14 @@ import {
   InfoCircleOutlined,
   CodeOutlined
 } from '@ant-design/icons';
-import { Breadcrumb, Layout, Menu, theme, ConfigProvider, Button } from 'antd'; // Added Button import
+import { Breadcrumb, Layout, Menu, theme, ConfigProvider } from 'antd'; // Removed Button import as it's not used
 import { BrowserRouter as Router, Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 
 import Home from './pages/home';
 import Problems from './pages/problems';
 import Leaderboard from './pages/leaderboard';
 import ResumeAnalyzer from './pages/resumeanalyzer';
+import CodeEditor from './pages/codeEditor'; // Import CodeEditor
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -30,7 +31,6 @@ const siderStyle = {
   bottom: 0,
   scrollbarWidth: 'thin',
   scrollbarGutter: 'stable',
-  
 };
 
 // Helper function for menu items
@@ -45,7 +45,6 @@ function getItem(label, key, icon, children) {
 
 // Menu items with routing keys
 const items = [
-  
   getItem('Home', '1', <HomeOutlined />),
   getItem('Problems', '2', <CodeOutlined />),
   getItem('Leaderboard', '3', <LayoutOutlined />),
@@ -55,6 +54,7 @@ const items = [
   ]),
   getItem('Resume Analyzer', '9', <FileOutlined />),
   getItem('About', '10', <InfoCircleOutlined />),
+  getItem('Code Editor', '11', <CodeOutlined />), // Added Code Editor menu item
 ];
 
 // Components for each route
@@ -71,6 +71,7 @@ const breadcrumbNameMap = {
   '/interview/peers': 'Interview with Peers',
   '/resume-analyzer': 'Resume Analyzer',
   '/about': 'About',
+  '/code-editor': 'Code Editor', // Added breadcrumb for Code Editor
 };
 
 const App = () => {
@@ -105,6 +106,9 @@ const App = () => {
       case '10':
         navigate('/about');
         break;
+      case '11':
+        navigate('/code-editor'); // Added navigation for Code Editor
+        break;
       default:
         break;
     }
@@ -138,41 +142,45 @@ const App = () => {
         },
       }}
     >
-      <Layout style={{ minHeight: '100vh'}} hasSider>
-        <Sider 
-          theme="dark" 
-          collapsible 
-          collapsed={collapsed} 
+      <Layout style={{ minHeight: '100vh' }} hasSider>
+        <Sider
+          theme="dark"
+          collapsible
+          collapsed={collapsed}
           onCollapse={(value) => setCollapsed(value)}
           style={siderStyle}
         >
           <div className="demo-logo-vertical" />
-          
+
           <Menu
             theme="dark"
             defaultSelectedKeys={['1']}
             mode="inline"
             items={items}
             onClick={onMenuClick}
-            style={{ backgroundColor: '#000', color: '#fff' }} 
+            selectedKeys={[location.pathname.split('/')[1]]} // Sync selected item with current route
+            style={{ backgroundColor: '#000', color: '#fff' }}
           />
         </Sider>
 
         <Layout>
-          <Header style={{ padding: 0, color: colorBgContainer, background: colorBgContainer, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-  
-            
+          <Header
+            style={{
+              padding: 0,
+              color: colorBgContainer,
+              background: colorBgContainer,
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+          >
             <div style={{ padding: '0 16px' }}>
-
-              
               <img
                 src="/logo.svg"
                 alt="Logo"
                 style={{ width: '15%', padding: '5px' }}
               />
             </div>
-
-  
           </Header>
 
           <Content style={{ margin: '0 16px', marginTop: '24px', overflow: 'initial' }}>
@@ -193,6 +201,7 @@ const App = () => {
                 <Route path="/interview/peers" element={<InterviewWithPeers />} />
                 <Route path="/resume-analyzer" element={<ResumeAnalyzer />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/code-editor" element={<CodeEditor />} /> {/* Added route for Code Editor */}
               </Routes>
             </div>
           </Content>

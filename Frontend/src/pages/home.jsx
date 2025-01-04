@@ -33,7 +33,8 @@ const Home = () => {
         <Col>
           <Title level={4}>Your Activity</Title>
           <GitHubCalendar
-            values={dummyData}
+            // values={dummyData}
+            username='nabin2004'
             blockSize={12}
             blockMargin={4}
             fontSize={14}
