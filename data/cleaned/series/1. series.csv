@@ -17,7 +17,7 @@ Series.nbytes
 Return the number of bytes in the underlying data.
 
 Series.ndim
-Number of dimensions of the underlying data, by definition 1.
+Number of dimensions of the underlying data by definition 1.
 
 Series.size
 Return the number of elements in the underlying data.

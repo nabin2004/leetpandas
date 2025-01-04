@@ -1,7 +1,3 @@
-
-Binary operator functions#
-
-
 Series.add(other[, level, fill_value, axis])
 Return Addition of series and other, element-wise (binary operator add).
 
