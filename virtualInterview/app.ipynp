@@ -28,7 +28,6 @@ def calculate_pose_score(pose_landmarks):
         right_shoulder = pose_landmarks.landmark[mp_pose.PoseLandmark.RIGHT_SHOULDER]
         left_hip = pose_landmarks.landmark[mp_pose.PoseLandmark.LEFT_HIP]
         right_hip = pose_landmarks.landmark[mp_pose.PoseLandmark.RIGHT_HIP]
-
         # Calculate vertical alignment of shoulders and hips
         shoulder_diff = abs(left_shoulder.y - right_shoulder.y)
         hip_diff = abs(left_hip.y - right_hip.y)

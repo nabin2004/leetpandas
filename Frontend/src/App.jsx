@@ -13,6 +13,8 @@ import Home from './pages/home'
 import Problems from './pages/problems';
 import Leaderboard from './pages/leaderboard';
 import ResumeAnalyzer from './pages/resumeanalyzer';
+import Landingpage from './pages/Landingpage';
+
 
 
 
@@ -42,6 +44,7 @@ const items = [
   ]),
   getItem('Resume Analyzer', '9', <FileOutlined />),
   getItem('About', '10', <PieChartOutlined />), // New About Menu Item
+
 ];
 
 // Components for each route
@@ -60,7 +63,7 @@ const App = () => {
   const onMenuClick = (e) => {
     switch (e.key) {
       case '1':
-        navigate('/');
+        navigate('/home');
         break;
       case '2':
         navigate('/problems');
@@ -84,40 +87,45 @@ const App = () => {
         break;
     }
   };
-
-  return (
+  const isLandingPage = location.pathname === '/';
+  return(
     <Layout style={{ minHeight: '100vh' }}>
-      <Sider trigger={null} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
-        <div className="demo-logo-vertical" />
-        <img
-          src="../public/logo.svg"
-          alt="Logo"
-          style={{ width: '100%', padding: '5px' }}
-        />
-        <Menu
-          theme="dark"
-          defaultSelectedKeys={['1']}
-          mode="inline"
-          items={items}
-          onClick={onMenuClick}
-        />
-      </Sider>
+      {!isLandingPage && (
+        <Sider trigger={null} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
+          <div className="demo-logo-vertical" />
+          <img
+            src="../public/logo.svg"
+            alt="Logo"
+            style={{ width: '100%', padding: '5px' }}
+          />
+          <Menu
+            theme="dark"
+            defaultSelectedKeys={['1']}
+            mode="inline"
+            items={items}
+            onClick={onMenuClick}
+          />
+        </Sider>
+      )}
       <Layout>
-        <Header style={{ padding: 0, background: colorBgContainer }} />
-        <Content style={{ margin: '0 16px' }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>LeetPandas</Breadcrumb.Item>
-          </Breadcrumb>
+        {!isLandingPage && <Header style={{ padding: 0, background: colorBgContainer }} />}
+        <Content style={{ margin: isLandingPage ? '0' : '0 16px' }}>
+          {!isLandingPage && (
+            <Breadcrumb style={{ margin: '16px 0' }}>
+              <Breadcrumb.Item>LeetPandas</Breadcrumb.Item>
+            </Breadcrumb>
+          )}
           <div
             style={{
-              padding: 24,
+              padding: isLandingPage ? '0' : '24px',
               minHeight: 360,
               background: colorBgContainer,
               borderRadius: borderRadiusLG,
             }}
           >
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<Landingpage />} />
+              <Route path="/home" element={<Home />} />
               <Route path="/problems" element={<Problems />} />
               <Route path="/leaderboard" element={<Leaderboard />} />
               <Route path="/interview/ai" element={<InterviewWithAI />} />
@@ -127,9 +135,11 @@ const App = () => {
             </Routes>
           </div>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>
-          LeetPandas ©{new Date().getFullYear()} Created by LeetPandas Team
-        </Footer>
+        {!isLandingPage && (
+          <Footer style={{ textAlign: 'center' }}>
+            LeetPandas ©{new Date().getFullYear()} Created by LeetPandas Team
+          </Footer>
+        )}
       </Layout>
     </Layout>
   );

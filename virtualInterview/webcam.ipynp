@@ -1,0 +1,306 @@
+# !pip install mediapipe
+# !pip install deepface
+# !pip install SpeechRecognition
+# !pip install librosa
+# !pip install pyAudioAnalysis
+
+import cv2
+import mediapipe as mp
+from deepface import DeepFace
+import numpy as np
+import speech_recognition as sr
+import librosa
+import os
+from IPython.display import display, Javascript, Image
+from google.colab.output import eval_js
+from base64 import b64decode, b64encode
+import PIL
+import io
+
+# Initialize Mediapipe
+mp_face_detection = mp.solutions.face_detection
+mp_pose = mp.solutions.pose
+mp_drawing = mp.solutions.drawing_utils
+
+# Initialize Mediapipe models
+face_detection = mp_face_detection.FaceDetection()
+pose = mp_pose.Pose()
+
+def analyze_facial_expression(frame):
+    """Analyze the emotion of the detected face using DeepFace."""
+    try:
+        analysis = DeepFace.analyze(frame, actions=['emotion'], enforce_detection=False)
+        emotion = analysis[0]['dominant_emotion']
+        return emotion
+    except:
+        return None
+
+def calculate_pose_score(pose_landmarks):
+    """Analyze posture to detect confidence based on pose landmarks."""
+    if pose_landmarks:
+        left_shoulder = pose_landmarks.landmark[mp_pose.PoseLandmark.LEFT_SHOULDER]
+        right_shoulder = pose_landmarks.landmark[mp_pose.PoseLandmark.RIGHT_SHOULDER]
+        left_hip = pose_landmarks.landmark[mp_pose.PoseLandmark.LEFT_HIP]
+        right_hip = pose_landmarks.landmark[mp_pose.PoseLandmark.RIGHT_HIP]
+        # Calculate vertical alignment of shoulders and hips
+        shoulder_diff = abs(left_shoulder.y - right_shoulder.y)
+        hip_diff = abs(left_hip.y - right_hip.y)
+
+        # Score is inversely proportional to misalignment
+        alignment_score = 1 - (shoulder_diff + hip_diff)
+        return max(0, alignment_score)  # Ensure score is non-negative
+    return 0.5  # Default score if no posture detected
+
+def analyze_tone(audio_file):
+    """Analyze the tone of speech from the audio file."""
+    try:
+        y, sr = librosa.load(audio_file)
+        pitch_mean = librosa.feature.rms(y=y).mean()  # Root Mean Square for energy
+        pitch_variance = np.var(librosa.feature.rms(y=y))
+        tone_score = min(1, (pitch_mean + pitch_variance) / 2)
+        return tone_score
+    except Exception as e:
+        print("Error analyzing audio:", e)
+        return 0.5  # Default tone score
+
+def record_audio(filename="audio.wav"):
+    """Record audio from the microphone."""
+    recognizer = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("Recording... Speak now!")
+        audio = recognizer.listen(source)
+        with open(filename, "wb") as f:
+            f.write(audio.get_wav_data())
+    return filename
+
+def js_to_image(js_reply):
+    """Convert the JavaScript object into an OpenCV image."""
+    image_bytes = b64decode(js_reply.split(',')[1])
+    jpg_as_np = np.frombuffer(image_bytes, dtype=np.uint8)
+    img = cv2.imdecode(jpg_as_np, flags=1)
+    return img
+
+def bbox_to_bytes(bbox_array):
+    """Convert OpenCV Rectangle bounding box image into base64 byte string to be overlayed on video stream."""
+    bbox_PIL = PIL.Image.fromarray(bbox_array, 'RGBA')
+    iobuf = io.BytesIO()
+    bbox_PIL.save(iobuf, format='png')
+    bbox_bytes = 'data:image/png;base64,{}'.format((str(b64encode(iobuf.getvalue()), 'utf-8')))
+    return bbox_bytes
+
+def video_stream():
+    """JavaScript to properly create our live video stream using our webcam as input."""
+    js = Javascript('''
+        var video;
+        var div = null;
+        var stream;
+        var captureCanvas;
+        var imgElement;
+        var labelElement;
+
+        var pendingResolve = null;
+        var shutdown = false;
+
+        function removeDom() {
+            stream.getVideoTracks()[0].stop();
+            video.remove();
+            div.remove();
+            video = null;
+            div = null;
+            stream = null;
+            imgElement = null;
+            captureCanvas = null;
+            labelElement = null;
+        }
+
+        function onAnimationFrame() {
+            if (!shutdown) {
+                window.requestAnimationFrame(onAnimationFrame);
+            }
+            if (pendingResolve) {
+                var result = "";
+                if (!shutdown) {
+                    captureCanvas.getContext('2d').drawImage(video, 0, 0, 640, 480);
+                    result = captureCanvas.toDataURL('image/jpeg', 0.8)
+                }
+                var lp = pendingResolve;
+                pendingResolve = null;
+                lp(result);
+            }
+        }
+
+        async function createDom() {
+            if (div !== null) {
+                return stream;
+            }
+
+            div = document.createElement('div');
+            div.style.border = '2px solid black';
+            div.style.padding = '3px';
+            div.style.width = '100%';
+            div.style.maxWidth = '600px';
+            document.body.appendChild(div);
+
+            const modelOut = document.createElement('div');
+            modelOut.innerHTML = "<span>Status:</span>";
+            labelElement = document.createElement('span');
+            labelElement.innerText = 'No data';
+            labelElement.style.fontWeight = 'bold';
+            modelOut.appendChild(labelElement);
+            div.appendChild(modelOut);
+
+            video = document.createElement('video');
+            video.style.display = 'block';
+            video.width = div.clientWidth - 6;
+            video.setAttribute('playsinline', '');
+            video.onclick = () => { shutdown = true; };
+            stream = await navigator.mediaDevices.getUserMedia(
+                {video: { facingMode: "environment"}});
+            div.appendChild(video);
+
+            imgElement = document.createElement('img');
+            imgElement.style.position = 'absolute';
+            imgElement.style.zIndex = 1;
+            imgElement.onclick = () => { shutdown = true; };
+            div.appendChild(imgElement);
+
+            const instruction = document.createElement('div');
+            instruction.innerHTML =
+                '<span style="color: red; font-weight: bold;">' +
+                'When finished, click here or on the video to stop this demo</span>';
+            div.appendChild(instruction);
+            instruction.onclick = () => { shutdown = true; };
+
+            video.srcObject = stream;
+            await video.play();
+
+            captureCanvas = document.createElement('canvas');
+            captureCanvas.width = 640; //video.videoWidth;
+            captureCanvas.height = 480; //video.videoHeight;
+            window.requestAnimationFrame(onAnimationFrame);
+
+            return stream;
+        }
+        async function stream_frame(label, imgData) {
+            if (shutdown) {
+                removeDom();
+                shutdown = false;
+                return '';
+            }
+
+            var preCreate = Date.now();
+            stream = await createDom();
+
+            var preShow = Date.now();
+            if (label != "") {
+                labelElement.innerHTML = label;
+            }
+
+            if (imgData != "") {
+                var videoRect = video.getClientRects()[0];
+                imgElement.style.top = videoRect.top + "px";
+                imgElement.style.left = videoRect.left + "px";
+                imgElement.style.width = videoRect.width + "px";
+                imgElement.style.height = videoRect.height + "px";
+                imgElement.src = imgData;
+            }
+
+            var preCapture = Date.now();
+            var result = await new Promise(function(resolve, reject) {
+                pendingResolve = resolve;
+            });
+            shutdown = false;
+
+            return {'create': preShow - preCreate,
+                    'show': preCapture - preShow,
+                    'capture': Date.now() - preCapture,
+                    'img': result};
+        }
+    ''')
+    display(js)
+
+def video_frame(label, bbox):
+    data = eval_js('stream_frame("{}", "{}")'.format(label, bbox))
+    return data
+
+# Start streaming video from webcam
+video_stream()
+# Label for video
+label_html = 'Capturing...'
+# Initialize bounding box to empt
+bbox = ''
+count = 0
+
+while True:
+    js_reply = video_frame(label_html, bbox)
+    if not js_reply:
+        break
+
+    # Convert JS response to OpenCV Image
+    img = js_to_image(js_reply["img"])
+
+    # Create transparent overlay for bounding box
+    bbox_array = np.zeros([480,640,4], dtype=np.uint8)
+
+    # Convert to RGB for Mediapipe and DeepFace
+    rgb_frame = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+    # Face Detection
+    face_results = face_detection.process(rgb_frame)
+    emotion = None
+    faces = []
+
+    if face_results.detections:
+        for detection in face_results.detections:
+            bbox = detection.location_data.relative_bounding_box
+            h, w, c = img.shape
+            x, y, box_width, box_height = int(bbox.xmin * w), int(bbox.ymin * h), int(bbox.width * w), int(bbox.height * h)
+            cv2.rectangle(img, (x, y), (x + box_width, y + box_height), (255, 0, 0), 2)
+            faces.append((x, y, box_width, box_height))
+
+            # Crop face for emotion analysis
+            face_crop = img[y:y + box_height, x:x + box_width]
+            if face_crop.size > 0:
+                emotion = analyze_facial_expression(face_crop)
+
+    # Pose Detection
+    pose_results = pose.process(rgb_frame)
+    pose_score = calculate_pose_score(pose_results.pose_landmarks)
+
+    # Draw pose landmarks
+    if pose_results.pose_landmarks:
+        mp_drawing.draw_landmarks(img, pose_results.pose_landmarks, mp_pose.POSE_CONNECTIONS)
+
+    # Confidence score estimation
+    confidence_score = (pose_score + (1 if emotion == "happy" else 0.5)) / 2
+
+    # Display results
+    for (x, y, w, h) in faces:
+        cv2.putText(img, f"Confidence Score: {confidence_score:.2f}", (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+        print(f"Confidence Score: {confidence_score:.2f}")
+        if emotion:
+            cv2.putText(img, f"Emotion: {emotion}", (x, y + h + 20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2)
+
+    # Get face bounding box for overlay
+    for (x, y, w, h) in faces:
+        bbox_array = cv2.rectangle(bbox_array, (x, y), (x + w, y + h), (255, 0, 0), 2)
+
+    bbox_array[:, :, 3] = (bbox_array.max(axis=2) > 0).astype(int) * 255
+    # Convert overlay of bbox into bytes
+    bbox_bytes = bbox_to_bytes(bbox_array)
+    # Update bbox so next frame gets new overlay
+    bbox = bbox_bytes
+
+    # Stop and analyze audio
+    if cv2.waitKey(1) & 0xFF == ord('a'):  # Press 'a' to analyze audio
+        audio_file = record_audio()
+        tone_score = analyze_tone(audio_file)
+        overall_performance = (confidence_score + tone_score) / 2
+        print(f"Tone Score: {tone_score:.2f}")
+        print(f"Overall Performance: {overall_performance:.2f}")
+
+    if cv2.waitKey(1) & 0xFF == ord('q'):  # Press 'q' to quit
+        break
+
+# cap.release()
+cv2.destroyAllWindows()
