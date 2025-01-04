@@ -65,7 +65,9 @@ const TerminalComponent = () => {
 
     return () => {
       // Dispose of the terminal on unmount
-      term.dispose();
+      if (term) {
+        term.dispose();
+      }
     };
   }, []);
 

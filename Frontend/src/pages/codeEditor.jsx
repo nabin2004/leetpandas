@@ -1,17 +1,35 @@
 import React, { useState } from 'react';
 import MonacoEditor from '@monaco-editor/react';
-import { Row, Col } from 'antd';
+import { Row, Col, Button } from 'antd';
 import TerminalComponent from './terminalComponent.jsx';
 
 const CodeEditor = () => {
     const [code, setCode] = useState('// Write your Python code here');
+    const [isFullscreen, setIsFullscreen] = useState(false); // State to track fullscreen mode
 
     const handleEditorChange = (value) => {
         setCode(value || ''); // Update the state with the editor content
     };
 
+    const toggleFullscreen = () => {
+        setIsFullscreen(!isFullscreen); // Toggle fullscreen state
+    };
+
     return (
-        <div style={{ height: '100vh', padding: '20px', boxSizing: 'border-box', backgroundColor: '#f0f2f5' }}>
+        <div className="MYBOX" 
+            style={{
+                height: isFullscreen ? '100vh' : 'auto', // Adjust height for fullscreen
+                width: isFullscreen ? '100vw' : 'auto', // Adjust width for fullscreen
+                padding: '20px',
+                boxSizing: 'border-box',
+                backgroundColor: '#f0f2f5',
+                position: isFullscreen ? 'fixed' : 'relative', // Fix position for fullscreen
+                top: isFullscreen ? '0' : 'auto',
+                left: isFullscreen ? '0' : 'auto',
+                zIndex: isFullscreen ? 9999 : 'auto', // Ensure it's on top when fullscreen
+                transition: 'all 0.3s ease', // Smooth transition for fullscreen
+            }}
+        >
             <Row gutter={16} style={{ height: '100%' }}>
                 {/* Left Column: Questions and other details */}
                 <Col span={8} style={{ height: '100%' }}>
@@ -56,7 +74,7 @@ const CodeEditor = () => {
                                     selectOnLineNumbers: true,
                                     wordWrap: 'on',
                                     minimap: { enabled: false },
-                                    folding: true,
+                                   
                                 }}
                             />
                         </div>
@@ -68,6 +86,19 @@ const CodeEditor = () => {
                     </div>
                 </Col>
             </Row>
+
+            {/* Fullscreen Button */}
+            <Button
+                onClick={toggleFullscreen}
+                style={{
+                    position: 'absolute',
+                    top: '10px',
+                    right: '10px',
+                    zIndex: 10000,
+                }}
+            >
+                {isFullscreen ? 'Exit Fullscreen' : 'Go Fullscreen'}
+            </Button>
         </div>
     );
 };
