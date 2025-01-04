@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MonacoEditor from '@monaco-editor/react';
 import { Row, Col, Button } from 'antd';
 import TerminalComponent from './terminalComponent.jsx';
@@ -6,6 +6,12 @@ import TerminalComponent from './terminalComponent.jsx';
 const CodeEditor = () => {
     const [code, setCode] = useState('// Write your Python code here');
     const [isFullscreen, setIsFullscreen] = useState(false); // State to track fullscreen mode
+    const [layoutInitialized, setLayoutInitialized] = useState(false); // To track initial layout load
+
+    useEffect(() => {
+        // Ensure layout is initialized properly after the first render
+        setLayoutInitialized(true);
+    }, []);
 
     const handleEditorChange = (value) => {
         setCode(value || ''); // Update the state with the editor content
@@ -16,7 +22,8 @@ const CodeEditor = () => {
     };
 
     return (
-        <div className="MYBOX" 
+        <div
+            className="MYBOX"
             style={{
                 height: isFullscreen ? '100vh' : 'auto', // Adjust height for fullscreen
                 width: isFullscreen ? '100vw' : 'auto', // Adjust width for fullscreen
@@ -28,6 +35,7 @@ const CodeEditor = () => {
                 left: isFullscreen ? '0' : 'auto',
                 zIndex: isFullscreen ? 9999 : 'auto', // Ensure it's on top when fullscreen
                 transition: 'all 0.3s ease', // Smooth transition for fullscreen
+                display: layoutInitialized ? 'block' : 'none', // Hide until layout is initialized
             }}
         >
             <Row gutter={16} style={{ height: '100%' }}>
@@ -74,13 +82,12 @@ const CodeEditor = () => {
                                     selectOnLineNumbers: true,
                                     wordWrap: 'on',
                                     minimap: { enabled: false },
-                                   
                                 }}
                             />
                         </div>
 
                         {/* Terminal */}
-                        <div style={{ flex: 1, backgroundColor: '#000', color: '#fff' }}>
+                        <div style={{ flex: 2, backgroundColor: '#000', color: '#fff' }}>
                             <TerminalComponent />
                         </div>
                     </div>

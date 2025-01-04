@@ -10,7 +10,7 @@ const TerminalComponent = () => {
     const term = new Terminal({
       cursorBlink: true, // Enable cursor blinking
       rows: 12,          // Set number of rows
-      cols: 100,         // Set number of columns
+      cols: 50,         // Set number of columns
       theme: {
         background: '#2e2e2e', // Dark background for a modern look
         foreground: '#f5f5f5', // Light text color for better readability
