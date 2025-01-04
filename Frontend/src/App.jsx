@@ -19,6 +19,7 @@ import { BrowserRouter as Router, Route, Routes, useNavigate, useLocation } from
 import Home from './pages/home';
 import Problems from './pages/problems';
 import Leaderboard from './pages/leaderboard';
+import InterviewWithAI from './pages/interviewithai';
 import ResumeAnalyzer from './pages/resumeanalyzer';
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -57,8 +58,7 @@ const items = [
   getItem('About', '10', <InfoCircleOutlined />),
 ];
 
-// Components for each route
-const InterviewWithAI = () => <div>Interview with AI Page</div>;
+
 const InterviewWithPeers = () => <div>Interview with Peers Page</div>;
 const About = () => <div>About LeetPandas: Learn more about our mission and team.</div>;
 
