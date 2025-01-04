@@ -13,29 +13,17 @@ import {
   InfoCircleOutlined,
   CodeOutlined
 } from '@ant-design/icons';
-import { Breadcrumb, Layout, Menu, theme, ConfigProvider } from 'antd'; // Removed Button import as it's not used
+import { Breadcrumb, Layout, Menu, theme, ConfigProvider } from 'antd';
 import { BrowserRouter as Router, Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 
 import Home from './pages/home';
 import Problems from './pages/problems';
 import Leaderboard from './pages/leaderboard';
 import ResumeAnalyzer from './pages/resumeanalyzer';
-//import Landingpage from './pages/Landingpage';
-
-
-
+import Landingpage from './pages/landingpage'; // Import Landingpage
 import CodeEditor from './pages/codeEditor'; // Import CodeEditor
 
 const { Header, Content, Footer, Sider } = Layout;
-
-const siderStyle = {
-  backgroundColor: '#000',
-  insetInlineStart: 0,
-  top: 0,
-  bottom: 0,
-  scrollbarWidth: 'thin',
-  scrollbarGutter: 'stable',
-};
 
 // Helper function for menu items
 function getItem(label, key, icon, children) {
@@ -57,28 +45,14 @@ const items = [
     getItem('with Peers', '8'),
   ]),
   getItem('Resume Analyzer', '9', <FileOutlined />),
-  getItem('About', '10', <PieChartOutlined />), // New About Menu Item
-
-  getItem('About', '10', <InfoCircleOutlined />),
-  getItem('Code Editor', '11', <CodeOutlined />), // Added Code Editor menu item
+  getItem('About', '10', <PieChartOutlined />),
+  getItem('Code Editor', '11', <CodeOutlined />),
 ];
 
 // Components for each route
 const InterviewWithAI = () => <div>Interview with AI Page</div>;
 const InterviewWithPeers = () => <div>Interview with Peers Page</div>;
 const About = () => <div>About LeetPandas: Learn more about our mission and team.</div>;
-
-// Mapping routes to breadcrumb names
-const breadcrumbNameMap = {
-  '/': 'Home',
-  '/problems': 'Problems',
-  '/leaderboard': 'Leaderboard',
-  '/interview/ai': 'Interview with AI',
-  '/interview/peers': 'Interview with Peers',
-  '/resume-analyzer': 'Resume Analyzer',
-  '/about': 'About',
-  '/code-editor': 'Code Editor', // Added breadcrumb for Code Editor
-};
 
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -113,32 +87,15 @@ const App = () => {
         navigate('/about');
         break;
       case '11':
-        navigate('/code-editor'); // Added navigation for Code Editor
+        navigate('/code-editor');
         break;
       default:
         break;
     }
   };
 
-  // Generate breadcrumbs dynamically based on the current path
-  const pathSnippets = location.pathname.split('/').filter((i) => i);
-  const extraBreadcrumbItems = pathSnippets.map((_, index) => {
-    const url = `/${pathSnippets.slice(0, index + 1).join('/')}`;
-    return (
-      <Breadcrumb.Item key={url}>
-        {breadcrumbNameMap[url] || 'Unknown'}
-      </Breadcrumb.Item>
-    );
-  });
-
-  const breadcrumbItems = [
-    <Breadcrumb.Item key="root">LeetPandas</Breadcrumb.Item>,
-    location.pathname === '/' ? (
-      <Breadcrumb.Item key="home">Home</Breadcrumb.Item>
-    ) : (
-      extraBreadcrumbItems
-    ),
-  ];
+  // Check if the current route is the landing page
+  const isLandingPage = location.pathname === '/';
 
   return (
     <ConfigProvider
@@ -148,73 +105,58 @@ const App = () => {
         },
       }}
     >
-      <Layout style={{ minHeight: '100vh' }} hasSider>
-        <Sider
-          theme="dark"
-          collapsible
-          collapsed={collapsed}
-          onCollapse={(value) => setCollapsed(value)}
-          style={siderStyle}
-        >
-          <div className="demo-logo-vertical" />
-
-          <Menu
-            theme="dark"
-            defaultSelectedKeys={['1']}
-            mode="inline"
-            items={items}
-            onClick={onMenuClick}
-            selectedKeys={[location.pathname.split('/')[1]]} // Sync selected item with current route
-            style={{ backgroundColor: '#000', color: '#fff' }}
-          />
-        </Sider>
-
+      <Layout style={{ minHeight: '100vh' }}>
+        {!isLandingPage && (
+          <Sider trigger={null} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
+            <div className="demo-logo-vertical" />
+            <img
+              src="../public/logo.svg"
+              alt="Logo"
+              style={{ width: '100%', padding: '5px' }}
+            />
+            <Menu
+              theme="dark"
+              defaultSelectedKeys={['1']}
+              mode="inline"
+              items={items}
+              onClick={onMenuClick}
+            />
+          </Sider>
+        )}
         <Layout>
-          <Header
-            style={{
-              padding: 0,
-              color: colorBgContainer,
-              background: colorBgContainer,
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}
-          >
-            <div style={{ padding: '0 16px' }}>
-              <img
-                src="/logo.svg"
-                alt="Logo"
-                style={{ width: '15%', padding: '5px' }}
-              />
-            </div>
-          </Header>
-
-          <Content style={{ margin: '0 16px', marginTop: '24px', overflow: 'initial' }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>{breadcrumbItems}</Breadcrumb>
+          {!isLandingPage && <Header style={{ padding: 0, background: colorBgContainer }} />}
+          <Content style={{ margin: isLandingPage ? '0' : '0 16px' }}>
+            {!isLandingPage && (
+              <Breadcrumb style={{ margin: '16px 0' }}>
+                <Breadcrumb.Item>LeetPandas</Breadcrumb.Item>
+              </Breadcrumb>
+            )}
             <div
               style={{
-                padding: 24,
+                padding: isLandingPage ? '0' : '24px',
                 minHeight: 360,
                 background: colorBgContainer,
                 borderRadius: borderRadiusLG,
               }}
             >
               <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<Landingpage />} />
+                <Route path="/home" element={<Home />} />
                 <Route path="/problems" element={<Problems />} />
                 <Route path="/leaderboard" element={<Leaderboard />} />
                 <Route path="/interview/ai" element={<InterviewWithAI />} />
                 <Route path="/interview/peers" element={<InterviewWithPeers />} />
                 <Route path="/resume-analyzer" element={<ResumeAnalyzer />} />
                 <Route path="/about" element={<About />} />
-                <Route path="/code-editor" element={<CodeEditor />} /> {/* Added route for Code Editor */}
+                <Route path="/code-editor" element={<CodeEditor />} />
               </Routes>
             </div>
           </Content>
-
-          <Footer style={{ textAlign: 'center' }}>
-            LeetPandas ©{new Date().getFullYear()} Created by LeetPandas Team
-          </Footer>
+          {!isLandingPage && (
+            <Footer style={{ textAlign: 'center' }}>
+              LeetPandas ©{new Date().getFullYear()} Created by LeetPandas Team
+            </Footer>
+          )}
         </Layout>
       </Layout>
     </ConfigProvider>
