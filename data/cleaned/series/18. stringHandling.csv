@@ -1,0 +1,175 @@
+String handling#
+Series.str can be used to access the values of the series as
+strings and apply several methods to it. These can be accessed like
+Series.str.<function/property>.
+
+
+Series.str.capitalize()
+Convert strings in the Series/Index to be capitalized.
+
+Series.str.casefold()
+Convert strings in the Series/Index to be casefolded.
+
+Series.str.cat([others, sep, na_rep, join])
+Concatenate strings in the Series/Index with given separator.
+
+Series.str.center(width[, fillchar])
+Pad left and right side of strings in the Series/Index.
+
+Series.str.contains(pat[, case, flags, na, ...])
+Test if pattern or regex is contained within a string of a Series or Index.
+
+Series.str.count(pat[, flags])
+Count occurrences of pattern in each string of the Series/Index.
+
+Series.str.decode(encoding[, errors])
+Decode character string in the Series/Index using indicated encoding.
+
+Series.str.encode(encoding[, errors])
+Encode character string in the Series/Index using indicated encoding.
+
+Series.str.endswith(pat[, na])
+Test if the end of each string element matches a pattern.
+
+Series.str.extract(pat[, flags, expand])
+Extract capture groups in the regex pat as columns in a DataFrame.
+
+Series.str.extractall(pat[, flags])
+Extract capture groups in the regex pat as columns in DataFrame.
+
+Series.str.find(sub[, start, end])
+Return lowest indexes in each strings in the Series/Index.
+
+Series.str.findall(pat[, flags])
+Find all occurrences of pattern or regular expression in the Series/Index.
+
+Series.str.fullmatch(pat[, case, flags, na])
+Determine if each string entirely matches a regular expression.
+
+Series.str.get(i)
+Extract element from each component at specified position or with specified key.
+
+Series.str.index(sub[, start, end])
+Return lowest indexes in each string in Series/Index.
+
+Series.str.join(sep)
+Join lists contained as elements in the Series/Index with passed delimiter.
+
+Series.str.len()
+Compute the length of each element in the Series/Index.
+
+Series.str.ljust(width[, fillchar])
+Pad right side of strings in the Series/Index.
+
+Series.str.lower()
+Convert strings in the Series/Index to lowercase.
+
+Series.str.lstrip([to_strip])
+Remove leading characters.
+
+Series.str.match(pat[, case, flags, na])
+Determine if each string starts with a match of a regular expression.
+
+Series.str.normalize(form)
+Return the Unicode normal form for the strings in the Series/Index.
+
+Series.str.pad(width[, side, fillchar])
+Pad strings in the Series/Index up to width.
+
+Series.str.partition([sep, expand])
+Split the string at the first occurrence of sep.
+
+Series.str.removeprefix(prefix)
+Remove a prefix from an object series.
+
+Series.str.removesuffix(suffix)
+Remove a suffix from an object series.
+
+Series.str.repeat(repeats)
+Duplicate each string in the Series or Index.
+
+Series.str.replace(pat, repl[, n, case, ...])
+Replace each occurrence of pattern/regex in the Series/Index.
+
+Series.str.rfind(sub[, start, end])
+Return highest indexes in each strings in the Series/Index.
+
+Series.str.rindex(sub[, start, end])
+Return highest indexes in each string in Series/Index.
+
+Series.str.rjust(width[, fillchar])
+Pad left side of strings in the Series/Index.
+
+Series.str.rpartition([sep, expand])
+Split the string at the last occurrence of sep.
+
+Series.str.rstrip([to_strip])
+Remove trailing characters.
+
+Series.str.slice([start, stop, step])
+Slice substrings from each element in the Series or Index.
+
+Series.str.slice_replace([start, stop, repl])
+Replace a positional slice of a string with another value.
+
+Series.str.split([pat, n, expand, regex])
+Split strings around given separator/delimiter.
+
+Series.str.rsplit([pat, n, expand])
+Split strings around given separator/delimiter.
+
+Series.str.startswith(pat[, na])
+Test if the start of each string element matches a pattern.
+
+Series.str.strip([to_strip])
+Remove leading and trailing characters.
+
+Series.str.swapcase()
+Convert strings in the Series/Index to be swapcased.
+
+Series.str.title()
+Convert strings in the Series/Index to titlecase.
+
+Series.str.translate(table)
+Map all characters in the string through the given mapping table.
+
+Series.str.upper()
+Convert strings in the Series/Index to uppercase.
+
+Series.str.wrap(width, **kwargs)
+Wrap strings in Series/Index at specified line width.
+
+Series.str.zfill(width)
+Pad strings in the Series/Index by prepending '0' characters.
+
+Series.str.isalnum()
+Check whether all characters in each string are alphanumeric.
+
+Series.str.isalpha()
+Check whether all characters in each string are alphabetic.
+
+Series.str.isdigit()
+Check whether all characters in each string are digits.
+
+Series.str.isspace()
+Check whether all characters in each string are whitespace.
+
+Series.str.islower()
+Check whether all characters in each string are lowercase.
+
+Series.str.isupper()
+Check whether all characters in each string are uppercase.
+
+Series.str.istitle()
+Check whether all characters in each string are titlecase.
+
+Series.str.isnumeric()
+Check whether all characters in each string are numeric.
+
+Series.str.isdecimal()
+Check whether all characters in each string are decimal.
+
+Series.str.get_dummies([sep])
+Return DataFrame of dummy/indicator variables for Series.
+
+

@@ -1,0 +1,44 @@
+Categorical accessor#
+Categorical-dtype specific methods and attributes are available under
+the Series.cat accessor.
+
+
+Series.cat.categories
+The categories of this categorical.
+
+Series.cat.ordered
+Whether the categories have an ordered relationship.
+
+Series.cat.codes
+Return Series of codes as well as the index.
+
+
+
+
+
+Series.cat.rename_categories(*args, **kwargs)
+Rename categories.
+
+Series.cat.reorder_categories(*args, **kwargs)
+Reorder categories as specified in new_categories.
+
+Series.cat.add_categories(*args, **kwargs)
+Add new categories.
+
+Series.cat.remove_categories(*args, **kwargs)
+Remove the specified categories.
+
+Series.cat.remove_unused_categories(*args, ...)
+Remove categories which are not used.
+
+Series.cat.set_categories(*args, **kwargs)
+Set the categories to the specified new categories.
+
+Series.cat.as_ordered(*args, **kwargs)
+Set the Categorical to be ordered.
+
+Series.cat.as_unordered(*args, **kwargs)
+Set the Categorical to be unordered.
+
+
+

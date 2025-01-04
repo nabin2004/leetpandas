@@ -1,0 +1,38 @@
+Missing data handling#
+
+
+Series.backfill(*[, axis, inplace, limit, ...])
+(DEPRECATED) Fill NA/NaN values by using the next valid observation to fill the gap.
+
+Series.bfill(*[, axis, inplace, limit, ...])
+Fill NA/NaN values by using the next valid observation to fill the gap.
+
+Series.dropna(*[, axis, inplace, how, ...])
+Return a new Series with missing values removed.
+
+Series.ffill(*[, axis, inplace, limit, ...])
+Fill NA/NaN values by propagating the last valid observation to next valid.
+
+Series.fillna([value, method, axis, ...])
+Fill NA/NaN values using the specified method.
+
+Series.interpolate([method, axis, limit, ...])
+Fill NaN values using an interpolation method.
+
+Series.isna()
+Detect missing values.
+
+Series.isnull()
+Series.isnull is an alias for Series.isna.
+
+Series.notna()
+Detect existing (non-missing) values.
+
+Series.notnull()
+Series.notnull is an alias for Series.notna.
+
+Series.pad(*[, axis, inplace, limit, downcast])
+(DEPRECATED) Fill NA/NaN values by propagating the last valid observation to next valid.
+
+Series.replace([to_replace, value, inplace, ...])
+Replace values given in to_replace with value.

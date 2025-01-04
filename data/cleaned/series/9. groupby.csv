@@ -1,0 +1,32 @@
+Function application, GroupBy & window#
+
+
+Series.apply(func[, convert_dtype, args, by_row])
+Invoke function on values of Series.
+
+Series.agg([func, axis])
+Aggregate using one or more operations over the specified axis.
+
+Series.aggregate([func, axis])
+Aggregate using one or more operations over the specified axis.
+
+Series.transform(func[, axis])
+Call func on self producing a Series with the same axis shape as self.
+
+Series.map(arg[, na_action])
+Map values of Series according to an input mapping or function.
+
+Series.groupby([by, axis, level, as_index, ...])
+Group Series using a mapper or by a Series of columns.
+
+Series.rolling(window[, min_periods, ...])
+Provide rolling window calculations.
+
+Series.expanding([min_periods, axis, method])
+Provide expanding window calculations.
+
+Series.ewm([com, span, halflife, alpha, ...])
+Provide exponentially weighted (EW) calculations.
+
+Series.pipe(func, *args, **kwargs)
+Apply chainable functions that expect Series or DataFrames.

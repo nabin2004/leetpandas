@@ -1,0 +1,35 @@
+Indexing, iteration#
+
+
+Series.get(key[, default])
+Get item from object for given key (ex: DataFrame column).
+
+Series.at
+Access a single value for a row/column label pair.
+
+Series.iat
+Access a single value for a row/column pair by integer position.
+
+Series.loc
+Access a group of rows and columns by label(s) or a boolean array.
+
+Series.iloc
+(DEPRECATED) Purely integer-location based indexing for selection by position.
+
+Series.__iter__()
+Return an iterator of the values.
+
+Series.items()
+Lazily iterate over (index, value) tuples.
+
+Series.keys()
+Return alias for index.
+
+Series.pop(item)
+Return item and drops from series.
+
+Series.item()
+Return the first element of the underlying data as a Python scalar.
+
+Series.xs(key[, axis, level, drop_level])
+Return cross-section from the Series/DataFrame.
