@@ -18,7 +18,7 @@ const Home = () => {
     <div style={{ padding: '20px' }}>
       <Row justify="center" align="middle" style={{ marginBottom: '40px' }}>
         <Col>
-          <Avatar size={64} src="/assets/nabin.jpg" />
+          <Avatar size={64} src="../assets/nabin.jpg" />
         </Col>
         <Col style={{ marginLeft: '16px' }}>
           <Title level={3} style={{ marginBottom: '0' }}>
@@ -48,7 +48,7 @@ const Home = () => {
             bordered={true}
             hoverable
             style={{ width: '100%' }}
-            cover={<img alt="interview" src="/assets/image(3).jpg" />}
+            cover={<img alt="interview" src="../assets/image(3).jpg" />}
           >
             <p>Detailed guides to crack your technical interviews.</p>
             <Button type="primary" block>
@@ -62,7 +62,7 @@ const Home = () => {
             bordered={true}
             hoverable
             style={{ width: '100%' }}
-            cover={<img alt="quiz" src="/assets/image(1).jpg" />}
+            cover={<img alt="quiz" src="../assets/image(1).jpg" />}
           >
             <p>Test your Python skills with our interactive quizzes.</p>
             <Button type="primary" block>
@@ -76,7 +76,7 @@ const Home = () => {
             bordered={true}
             hoverable
             style={{ width: '100%' }}
-            cover={<img alt="questions" src="/assets/image(2).jpg" />}
+            cover={<img alt="questions" src="../assets/image(2).jpg" />}
           >
             <p>Get access to frequently asked interview questions.</p>
             <Button type="primary" block>
