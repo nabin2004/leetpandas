@@ -4,7 +4,7 @@ import { Row, Col, Button } from 'antd';
 import TerminalComponent from './terminalComponent.jsx';
 
 const CodeEditor = () => {
-    const [code, setCode] = useState('// Write your Python code here');
+    const [code, setCode] = useState('# Write your Python code here');
     const [isFullscreen, setIsFullscreen] = useState(false); // State to track fullscreen mode
     const [layoutInitialized, setLayoutInitialized] = useState(false); // To track initial layout load
 

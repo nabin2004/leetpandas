@@ -21,6 +21,8 @@ import Problems from './pages/problems';
 import Leaderboard from './pages/leaderboard';
 import ResumeAnalyzer from './pages/resumeanalyzer';
 import CodeEditor from './pages/codeEditor'; // Import CodeEditor
+import InterviewWithAI from './pages/InterviewWithAI'; // Import InterviewWithAI
+import About from './pages/about';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -58,9 +60,7 @@ const items = [
 ];
 
 // Components for each route
-const InterviewWithAI = () => <div>Interview with AI Page</div>;
 const InterviewWithPeers = () => <div>Interview with Peers Page</div>;
-const About = () => <div>About LeetPandas: Learn more about our mission and team.</div>;
 
 // Mapping routes to breadcrumb names
 const breadcrumbNameMap = {

@@ -18,11 +18,11 @@ const Home = () => {
     <div style={{ padding: '20px' }}>
       <Row justify="center" align="middle" style={{ marginBottom: '40px' }}>
         <Col>
-          <Avatar size={64} src="https://via.placeholder.com/150" />
+          <Avatar size={64} src="src\assets\nabin.jpg" />
         </Col>
         <Col style={{ marginLeft: '16px' }}>
           <Title level={3} style={{ marginBottom: '0' }}>
-            Hi Nabin,
+            Hi Nabin Oli,
           </Title>
           <Paragraph style={{ fontSize: '16px' }}>
             Master your interview preparation journey with curated resources, quizzes, and top-notch tools designed to help you succeed.
@@ -49,7 +49,7 @@ const Home = () => {
             bordered={true}
             hoverable
             style={{ width: '100%' }}
-            cover={<img alt="interview" src="https://via.placeholder.com/200x100" />}
+            cover={<img alt="interview" src="src\assets\image(3).jpg" />}
           >
             <p>Detailed guides to crack your technical interviews.</p>
             <Button type="primary" block>
@@ -63,7 +63,7 @@ const Home = () => {
             bordered={true}
             hoverable
             style={{ width: '100%' }}
-            cover={<img alt="quiz" src="https://via.placeholder.com/200x100" />}
+            cover={<img alt="quiz" src="src\assets\image(1).jpg" />}
           >
             <p>Test your Python skills with our interactive quizzes.</p>
             <Button type="primary" block>
@@ -77,7 +77,7 @@ const Home = () => {
             bordered={true}
             hoverable
             style={{ width: '100%' }}
-            cover={<img alt="questions" src="https://via.placeholder.com/200x100" />}
+            cover={<img alt="questions" src="src\assets\image(2).jpg" />}
           >
             <p>Get access to frequently asked interview questions.</p>
             <Button type="primary" block>
