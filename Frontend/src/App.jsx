@@ -22,6 +22,8 @@ import Leaderboard from './pages/leaderboard';
 import ResumeAnalyzer from './pages/resumeanalyzer';
 import Landingpage from './pages/landingpage'; // Import Landingpage
 import CodeEditor from './pages/codeEditor'; // Import CodeEditor
+import InterviewWithAI from './pages/InterviewWithAI'; // Import InterviewWithAI
+import About from './pages/about';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -50,9 +52,7 @@ const items = [
 ];
 
 // Components for each route
-const InterviewWithAI = () => <div>Interview with AI Page</div>;
 const InterviewWithPeers = () => <div>Interview with Peers Page</div>;
-const About = () => <div>About LeetPandas: Learn more about our mission and team.</div>;
 
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -124,13 +124,28 @@ const App = () => {
           </Sider>
         )}
         <Layout>
-          {!isLandingPage && <Header style={{ padding: 0, background: colorBgContainer }} />}
-          <Content style={{ margin: isLandingPage ? '0' : '0 16px' }}>
-            {!isLandingPage && (
-              <Breadcrumb style={{ margin: '16px 0' }}>
-                <Breadcrumb.Item>LeetPandas</Breadcrumb.Item>
-              </Breadcrumb>
-            )}
+          <Header
+            style={{
+              padding: 0,
+              color: colorBgContainer,
+              background: colorBgContainer,
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+          >
+            <div style={{ padding: '0 16px' }}>
+              <img
+                src="/logo.svg"
+                alt="Logo"
+                style={{ width: '15%', padding: '5px' }}
+              />
+            </div>
+            
+          </Header>
+
+          <Content style={{ margin: '0 16px', marginTop: '24px', overflow: 'initial' }}>
+            <Breadcrumb style={{ margin: '16px 0' }}>{breadcrumbItems}</Breadcrumb>
             <div
               style={{
                 padding: isLandingPage ? '0' : '24px',
