@@ -12,6 +12,7 @@ const hardcodedUsers = [
     avatar: 'https://randomuser.me/api/portraits/men/1.jpg',
     score: 1500,
     status: 'Pro User',
+    country: 'NP',
   },
   {
     key: '2',
@@ -20,6 +21,7 @@ const hardcodedUsers = [
     avatar: 'https://randomuser.me/api/portraits/men/2.jpg',
     score: 1450,
     status: 'Pro User',
+    country: 'NP',
   },
   {
     key: '3',
@@ -28,6 +30,7 @@ const hardcodedUsers = [
     avatar: 'https://randomuser.me/api/portraits/women/1.jpg',
     score: 1400,
     status: 'Pro User',
+    country: 'NP',
   },
   {
     key: '4',
@@ -36,6 +39,7 @@ const hardcodedUsers = [
     avatar: 'https://randomuser.me/api/portraits/women/2.jpg',
     score: 1350,
     status: 'Beginner',
+    country: 'NP',
   },
   {
     key: '5',
@@ -44,6 +48,7 @@ const hardcodedUsers = [
     avatar: 'https://randomuser.me/api/portraits/men/3.jpg',
     score: 1300,
     status: 'Pro User',
+    country: 'NP',
   },
   {
     key: '6',
@@ -52,6 +57,7 @@ const hardcodedUsers = [
     avatar: 'https://randomuser.me/api/portraits/men/4.jpg',
     score: 1250,
     status: 'Beginner',
+    country: 'NP',
   },
   {
     key: '7',
@@ -60,6 +66,7 @@ const hardcodedUsers = [
     avatar: 'https://randomuser.me/api/portraits/men/5.jpg',
     score: 1200,
     status: 'Beginner',
+    country: 'NP',
   },
   {
     key: '8',
@@ -68,6 +75,7 @@ const hardcodedUsers = [
     avatar: 'https://randomuser.me/api/portraits/men/6.jpg',
     score: 1150,
     status: 'Pro User',
+    country: 'NP',
   },
   {
     key: '9',
@@ -76,6 +84,7 @@ const hardcodedUsers = [
     avatar: 'https://randomuser.me/api/portraits/women/3.jpg',
     score: 1100,
     status: 'Beginner',
+    country: 'NP',
   },
 ];
 
@@ -90,6 +99,7 @@ const generateLeaderboardData = () => {
       avatar: `https://randomuser.me/api/portraits/men/${i % 50 + 1}.jpg`,
       score: Math.floor(Math.random() * 1000) + 500, // random score between 500 and 1500
       status: i % 2 === 0 ? 'Pro User' : 'Beginner',
+      country: 'NP',
     });
   }
   return users;
@@ -120,7 +130,31 @@ const Leaderboard = () => {
       render: (username, record) => (
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <Avatar src={record.avatar} />
-          <Text strong>{username}</Text>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+            {record.rank <= 5 && (
+              <Tag 
+                color="#722f37" 
+                style={{ 
+                  padding: '0 2px',
+                  fontSize: '10px',
+                  lineHeight: '14px',
+                  borderRadius: '2px',
+                  margin: 0
+                }}
+              >
+                KAJI
+              </Tag>
+            )}
+            <Text strong>{username}</Text>
+            {record.status === 'Pro User' && (
+              <Tag color="green" style={{ margin: 0, fontSize: '11px' }}>PRO</Tag>
+            )}
+          </div>
+          <img 
+            src={`https://flagcdn.com/24x18/${record.country.toLowerCase()}.png`}
+            alt={`${record.country} flag`}
+            style={{ width: '24px', height: '18px' }}
+          />
         </div>
       ),
     },
@@ -129,14 +163,6 @@ const Leaderboard = () => {
       dataIndex: 'score',
       key: 'score',
       render: (score) => <Text>{score}</Text>,
-    },
-    {
-      title: 'Status',
-      dataIndex: 'status',
-      key: 'status',
-      render: (status) => (
-        <Tag color={status === 'Pro User' ? 'green' : 'blue'}>{status}</Tag>
-      ),
     },
   ];
 

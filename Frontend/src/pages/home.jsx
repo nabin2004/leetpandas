@@ -1,7 +1,10 @@
 import React from 'react';
 import { Card, Button, Typography, Row, Col, Avatar } from 'antd';
 import GitHubCalendar from 'react-github-calendar';
-
+import nabin from '../assets/nabin.jpg';
+import image1 from '../assets/image(1).jpg';
+import image2 from '../assets/image(2).jpg';
+import image3 from '../assets/image(3).jpg';
 const { Title, Paragraph } = Typography;
 
 const Home = () => {
@@ -18,14 +21,19 @@ const Home = () => {
     <div style={{ padding: '20px' }}>
       <Row justify="center" align="middle" style={{ marginBottom: '40px' }}>
         <Col>
-          <Avatar size={64} src="../assets/nabin.jpg" />
+          <Avatar 
+            size={64} 
+            src={nabin} 
+            shape="square" 
+            style={{ borderRadius: '8px' }}
+          />
         </Col>
         <Col style={{ marginLeft: '16px' }}>
           <Title level={3} style={{ marginBottom: '0' }}>
             Hi Nabin Oli,
           </Title>
           <Paragraph style={{ fontSize: '16px' }}>
-            Master your interview preparation journey with curated resources, quizzes, and top-notch tools designed to help you succeed.
+            Master your interview preparation journey with curated resources and quizzes.
           </Paragraph>
         </Col>
       </Row>
@@ -48,7 +56,7 @@ const Home = () => {
             bordered={true}
             hoverable
             style={{ width: '100%' }}
-            cover={<img alt="interview" src="../assets/image(3).jpg" />}
+            cover={<img alt="interview" src={image3} />}
           >
             <p>Detailed guides to crack your technical interviews.</p>
             <Button type="primary" block>
@@ -62,7 +70,7 @@ const Home = () => {
             bordered={true}
             hoverable
             style={{ width: '100%' }}
-            cover={<img alt="quiz" src="../assets/image(1).jpg" />}
+            cover={<img alt="quiz" src={image1} />}
           >
             <p>Test your Python skills with our interactive quizzes.</p>
             <Button type="primary" block>
@@ -76,7 +84,7 @@ const Home = () => {
             bordered={true}
             hoverable
             style={{ width: '100%' }}
-            cover={<img alt="questions" src="../assets/image(2).jpg" />}
+            cover={<img alt="questions" src={image2} />}
           >
             <p>Get access to frequently asked interview questions.</p>
             <Button type="primary" block>

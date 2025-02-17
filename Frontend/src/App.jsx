@@ -198,8 +198,8 @@ const App = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/problems" element={<Problems />} />
                 <Route path="/leaderboard" element={<Leaderboard />} />
-                <Route path="/interview/ai" element={<InterviewWithAI />} />
-                <Route path="/interview/peers" element={<InterviewWithPeers />} />
+                {/* <Route path="/interview/ai" element={<InterviewWithAI />} /> */}
+                {/* <Route path="/interview/peers" element={<InterviewWithPeers />} /> */}
                 <Route path="/resume-analyzer" element={<ResumeAnalyzer />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/code-editor" element={<CodeEditor />} /> {/* Added route for Code Editor */}

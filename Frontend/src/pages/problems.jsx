@@ -3,6 +3,17 @@ import { Table, Pagination, Badge, Typography } from 'antd';
 
 const { Text } = Typography;
 
+const badgeStyle = `
+  .custom-badge .ant-badge-status-dot {
+    width: 12px;
+    height: 12px;
+  }
+`;
+
+const styleSheet = document.createElement('style');
+styleSheet.innerText = badgeStyle;
+document.head.appendChild(styleSheet);
+
 const dataSource = Array.from({ length: 100 }, (_, i) => ({
   key: i + 1,
   question: `What is the purpose of the Pandas method question ${i + 1}?`,
@@ -36,7 +47,7 @@ const columns = [
         default:
           color = 'blue';
       }
-      return <Badge color={color} text={difficulty} />;
+      return <Badge color={color} text={difficulty} style={{ color: color }} className="custom-badge" />;
     },
   },
   {
