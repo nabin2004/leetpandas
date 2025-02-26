@@ -184,7 +184,7 @@ const App = () => {
             
           </Header>
 
-          <Content style={{ margin: '0 16px', marginTop: '24px', overflow: 'initial' }}>
+          <Content style={{ margin: '2px 9px', marginTop: '4px', overflow: 'initial' }}>
             <Breadcrumb style={{ margin: '16px 0' }}>{breadcrumbItems}</Breadcrumb>
             <div
               style={{

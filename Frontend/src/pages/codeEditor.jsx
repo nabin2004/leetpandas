@@ -26,10 +26,9 @@ const CodeEditor = () => {
             style={{
                 height: isFullscreen ? '100vh' : 'calc(100vh - 40px)', // Adjust height for fullscreen and normal
                 width: isFullscreen ? '100vw' : '100%', // Full width in normal mode
-                padding: isFullscreen ? '0' : '20px', // Remove padding in fullscreen
                 boxSizing: 'border-box',
-                backgroundColor: '#f0f2f5',
-                position: isFullscreen ? 'fixed' : 'relative', // Fix position for fullscreen
+             
+                position: isFullscreen ? 'fixed' : 'relative', 
                 top: isFullscreen ? '0' : 'auto',
                 left: isFullscreen ? '0' : 'auto',
                 zIndex: isFullscreen ? 9999 : 'auto', // Ensure it's on top when fullscreen
