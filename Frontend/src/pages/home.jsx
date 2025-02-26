@@ -13,17 +13,9 @@ import image3 from "../assets/image(3).jpg";
 const { Title, Paragraph } = Typography;
 
 const Home = () => {
-  // Dummy GitHub contribution data
-  const dummyData = [
-    { date: "2024-12-21", count: 40 },
-    { date: "2024-12-22", count: 50 },
-    { date: "2024-12-23", count: 20 },
-    { date: "2024-12-24", count: 10 },
-    { date: "2024-12-25", count: 30 },
-  ];
 
   return (
-    <div style={{ padding: "1px", backgroundColor: "#f0f2f5" }}>
+    <div style={{ padding: "10px", borderRadius: "10px", backgroundColor: "#f0f2f5" }}>
       <div
         style={{
           backgroundColor: "white",
@@ -116,7 +108,7 @@ const Home = () => {
               />
               <Button
                 type="link"
-                href="https://www.linkedin.com/in/nabin-oli-927b84257/"
+                href="https://www.linkedin.com/in/nabinoli/"
                 target="_blank"
                 icon={
                   <LinkedinOutlined
@@ -130,7 +122,7 @@ const Home = () => {
               />
               <Button
                 type="link"
-                href="https://twitter.com/NabinOli8"
+                href="https://twitter.com/nabintwts"
                 target="_blank"
                 icon={
                   <TwitterOutlined
@@ -189,8 +181,9 @@ const Home = () => {
             style={{
               backgroundColor: "white",
               padding: "20px",
+              marginTop: "20px",
               borderRadius: "8px",
-              boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.1)"
             }}
           >
             <Title
@@ -205,10 +198,10 @@ const Home = () => {
             </Title>
             <GitHubCalendar
               username="nabin2004"
-              blockSize={19}
-              blockMargin={3}
+              blockSize={22}
+              blockMargin={2}
               fontSize={15}
-              color="#1890ff"
+              color="#b42e4a"
             />
           </div>
         </Col>
