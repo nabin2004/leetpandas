@@ -6,14 +6,14 @@ import {
   TwitterOutlined,
 } from "@ant-design/icons";
 import GitHubCalendar from "react-github-calendar";
-import nabin from "../assets/nabin.jpg";
 import image1 from "../assets/image(1).jpg";
 import image2 from "../assets/image(2).jpg";
 import image3 from "../assets/image(3).jpg";
 const { Title, Paragraph } = Typography;
+import { useNavigate } from 'react-router-dom'; 
 
 const Home = () => {
-
+  const navigate = useNavigate();
   return (
     <div style={{ padding: "10px", borderRadius: "10px", backgroundColor: "#f0f2f5" }}>
       <div
@@ -26,15 +26,6 @@ const Home = () => {
       >
         <Row justify="start" align="middle" style={{ marginBottom: "32px" }}>
           <Col>
-            <Avatar
-              size={200}
-              src={nabin}
-              shape="square"
-              style={{
-                borderRadius: "12px",
-                boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-              }}
-            />
           </Col>
           <Col
             style={{
@@ -94,46 +85,7 @@ const Home = () => {
                 boxShadow: "inset 0 2px 4px rgba(0,0,0,0.05)",
               }}
             >
-              <Button
-                type="link"
-                href="https://github.com/nabin2004"
-                target="_blank"
-                icon={
-                  <GithubOutlined style={{ fontSize: "28px", color: "#333" }} />
-                }
-                style={{
-                  transition: "transform 0.2s",
-                  ":hover": { transform: "scale(1.1)" },
-                }}
-              />
-              <Button
-                type="link"
-                href="https://www.linkedin.com/in/nabinoli/"
-                target="_blank"
-                icon={
-                  <LinkedinOutlined
-                    style={{ fontSize: "28px", color: "#0077b5" }}
-                  />
-                }
-                style={{
-                  transition: "transform 0.2s",
-                  ":hover": { transform: "scale(1.1)" },
-                }}
-              />
-              <Button
-                type="link"
-                href="https://twitter.com/nabintwts"
-                target="_blank"
-                icon={
-                  <TwitterOutlined
-                    style={{ fontSize: "28px", color: "#1DA1F2" }}
-                  />
-                }
-                style={{
-                  transition: "transform 0.2s",
-                  ":hover": { transform: "scale(1.1)" },
-                }}
-              />
+
             </div>
           </Col>
           <Col
@@ -227,94 +179,25 @@ const Home = () => {
             bodyStyle={{ padding: "16px" }}
           >
             <Title level={4} style={{ marginBottom: "8px", fontSize: "18px" }}>
-              Pandas Interview Preparation
+              Machine Learning Preparation
             </Title>
             <p
               style={{ color: "#595959", marginBottom: "16px", height: "40px" }}
             >
-              Detailed guides to crack your technical interviews.
+              Detailed guides to revise, learn and test your Machine Learning Knowledge.
             </p>
             <Button
               type="primary"
               block
               style={{ borderRadius: "6px", height: "38px" }}
+              onClick={() => navigate('/problems')} 
             >
               Explore Now
             </Button>
           </Card>
         </Col>
-        <Col xs={24} sm={12} md={8} lg={6}>
-          <Card
-            bordered={false}
-            hoverable
-            style={{
-              width: "100%",
-              borderRadius: "12px",
-              overflow: "hidden",
-              boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-            }}
-            cover={
-              <img
-                alt="quiz"
-                src={image1}
-                style={{ height: "200px", objectFit: "cover" }}
-              />
-            }
-            bodyStyle={{ padding: "16px" }}
-          >
-            <Title level={4} style={{ marginBottom: "8px", fontSize: "18px" }}>
-              Python Quiz
-            </Title>
-            <p
-              style={{ color: "#595959", marginBottom: "16px", height: "40px" }}
-            >
-              Test your Python skills with our interactive quizzes.
-            </p>
-            <Button
-              type="primary"
-              block
-              style={{ borderRadius: "6px", height: "38px" }}
-            >
-              Take Quiz
-            </Button>
-          </Card>
-        </Col>
-        <Col xs={24} sm={12} md={8} lg={6}>
-          <Card
-            bordered={false}
-            hoverable
-            style={{
-              width: "100%",
-              borderRadius: "12px",
-              overflow: "hidden",
-              boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-            }}
-            cover={
-              <img
-                alt="questions"
-                src={image2}
-                style={{ height: "200px", objectFit: "cover" }}
-              />
-            }
-            bodyStyle={{ padding: "16px" }}
-          >
-            <Title level={4} style={{ marginBottom: "8px", fontSize: "18px" }}>
-              Top Interview Questions
-            </Title>
-            <p
-              style={{ color: "#595959", marginBottom: "16px", height: "40px" }}
-            >
-              Get access to frequently asked interview questions.
-            </p>
-            <Button
-              type="primary"
-              block
-              style={{ borderRadius: "6px", height: "38px" }}
-            >
-              View Questions
-            </Button>
-          </Card>
-        </Col>
+
+
       </Row>
     </div>
   );

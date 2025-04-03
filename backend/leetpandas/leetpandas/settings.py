@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'data',
-    'import_export',
+    
+    #Installed
+    'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',  
 ]
 
 MIDDLEWARE = [
@@ -71,6 +74,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'leetpandas.wsgi.application'
+
+
 
 
 # Database
@@ -124,3 +129,28 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# EXPLICITLY DEFINED
+from datetime import timedelta
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',  # Use JWT for authentication
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',  # Require authentication for API access
+    ),
+}
+
+
+# Simple JWT Settings (Optional: Customize Token Lifetimes)
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),  # Token expires in 60 mins
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),  # Refresh token expires in 7 days
+    'ROTATE_REFRESH_TOKENS': True,  # Issue new refresh token on access token refresh
+    'BLACKLIST_AFTER_ROTATION': True,  # Blacklist old refresh tokens
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY,  # Uses Django's SECRET_KEY for signing
+    'AUTH_HEADER_TYPES': ('Bearer',),  # Authorization: Bearer <token>
+}

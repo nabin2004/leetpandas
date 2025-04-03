@@ -20,6 +20,7 @@ class User(models.Model):
 
 # Stats table
 class Stats(models.Model):
+    #user = models.OneToOneField(User.username, on_delete=models.CASCADE, related_name='stats')
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='stats')
     questions_solved = models.IntegerField(default=0)
     login_streak = models.IntegerField(default=0)

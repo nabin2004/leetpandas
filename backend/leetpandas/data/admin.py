@@ -10,10 +10,13 @@ class UserAdmin(admin.ModelAdmin):
 
 # Custom Stats Admin
 class StatsAdmin(admin.ModelAdmin):
-    list_display = ('user', 'questions_solved', 'login_streak', 'rank')
-    search_fields = ('user__username',)
-    list_filter = ('rank',)
-    readonly_fields = ('user',)  # Prevent changing the user directly
+    list_display = ('user', 'questions_solved', 'login_streak', 'rank', )  
+    search_fields = ('user__username', 'user__firstname', 'user__lastname')
+    list_filter = ('rank', 'login_streak')
+    readonly_fields = ('user', 'rank')  
+    ordering = ('-rank', '-questions_solved')
+    list_per_page = 25  
+
 
 # Custom MCQ Admin
 class MCQAdmin(admin.ModelAdmin):

@@ -23,6 +23,9 @@ import ResumeAnalyzer from './pages/resumeanalyzer';
 import CodeEditor from './pages/codeEditor'; // Import CodeEditor
 import InterviewWithAI from './pages/InterviewWithAI'; // Import InterviewWithAI
 import About from './pages/about';
+import Tracks from './pages/tracks';
+import Login from './pages/login'; // Import the Login page
+import Signup from './pages/signup'; // Import the Signup page
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -57,6 +60,9 @@ const items = [
   getItem('Resume Analyzer', '9', <FileOutlined />),
   getItem('About', '10', <InfoCircleOutlined />),
   getItem('Code Editor', '11', <CodeOutlined />), // Added Code Editor menu item
+  getItem('Tracks', '12', <IssuesCloseOutlined />), // Added Tracks menu item
+  getItem('Login', '13', <UserOutlined />), // Added Login menu item (optional)
+  getItem('Signup', '14', <UserOutlined />), // Added Signup menu item (optional)
 ];
 
 // Components for each route
@@ -71,7 +77,10 @@ const breadcrumbNameMap = {
   '/interview/peers': 'Interview with Peers',
   '/resume-analyzer': 'Resume Analyzer',
   '/about': 'About',
-  '/code-editor': 'Code Editor', // Added breadcrumb for Code Editor
+  '/code-editor': 'Code Editor', 
+  '/tracks':'Tracks',
+  '/login': 'Login',
+  '/signup': 'Signup',
 };
 
 const App = () => {
@@ -107,7 +116,16 @@ const App = () => {
         navigate('/about');
         break;
       case '11':
-        navigate('/code-editor'); // Added navigation for Code Editor
+        navigate('/code-editor'); 
+        break;
+      case '12':
+        navigate('/tracks');
+        break;
+      case '13':
+        navigate('/login'); 
+        break;
+      case '14':
+        navigate('/signup'); 
         break;
       default:
         break;
@@ -158,7 +176,7 @@ const App = () => {
             mode="inline"
             items={items}
             onClick={onMenuClick}
-            selectedKeys={[location.pathname.split('/')[1]]} // Sync selected item with current route
+            selectedKeys={[location.pathname.split('/')[1]]}
             style={{ backgroundColor: '#000', color: '#fff' }}
           />
         </Sider>
@@ -203,6 +221,9 @@ const App = () => {
                 <Route path="/resume-analyzer" element={<ResumeAnalyzer />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/code-editor" element={<CodeEditor />} /> {/* Added route for Code Editor */}
+                <Route path="/tracks" element={<Tracks />} /> {/* Added route for Code Editor */}
+                <Route path="/login" element={<Login />} /> {/* Added route for Login */}
+                <Route path="/signup" element={<Signup />} /> {/* Added route for Signup */}
               </Routes>
             </div>
           </Content>
