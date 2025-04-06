@@ -1,113 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Table, Avatar, Badge, Typography, Tag, Card } from 'antd';
 
 const { Text } = Typography;
 
-// Hardcoded leaderboard data
-const hardcodedUsers = [
-  {
-    key: '1',
-    rank: 1,
-    username: 'Alok Khatri',
-    avatar: 'https://randomuser.me/api/portraits/men/1.jpg',
-    score: 1500,
-    status: 'Pro User',
-    country: 'NP',
-  },
-  {
-    key: '2',
-    rank: 2,
-    username: 'Jatin Bhushal',
-    avatar: 'https://randomuser.me/api/portraits/men/2.jpg',
-    score: 1450,
-    status: 'Pro User',
-    country: 'NP',
-  },
-  {
-    key: '3',
-    rank: 3,
-    username: 'Aayusha Shrestha',
-    avatar: 'https://randomuser.me/api/portraits/women/1.jpg',
-    score: 1400,
-    status: 'Pro User',
-    country: 'NP',
-  },
-  {
-    key: '4',
-    rank: 4,
-    username: 'Simran Shakya',
-    avatar: 'https://randomuser.me/api/portraits/women/2.jpg',
-    score: 1350,
-    status: 'Beginner',
-    country: 'NP',
-  },
-  {
-    key: '5',
-    rank: 5,
-    username: 'Nabin Oli',
-    avatar: 'https://randomuser.me/api/portraits/men/3.jpg',
-    score: 1300,
-    status: 'Pro User',
-    country: 'NP',
-  },
-  {
-    key: '6',
-    rank: 6,
-    username: 'Niraj Karki',
-    avatar: 'https://randomuser.me/api/portraits/men/4.jpg',
-    score: 1250,
-    status: 'Beginner',
-    country: 'NP',
-  },
-  {
-    key: '7',
-    rank: 7,
-    username: 'Abiyan',
-    avatar: 'https://randomuser.me/api/portraits/men/5.jpg',
-    score: 1200,
-    status: 'Beginner',
-    country: 'NP',
-  },
-  {
-    key: '8',
-    rank: 8,
-    username: 'Pariskar',
-    avatar: 'https://randomuser.me/api/portraits/men/6.jpg',
-    score: 1150,
-    status: 'Pro User',
-    country: 'NP',
-  },
-  {
-    key: '9',
-    rank: 9,
-    username: 'Sakshi Poudel',
-    avatar: 'https://randomuser.me/api/portraits/women/3.jpg',
-    score: 1100,
-    status: 'Beginner',
-    country: 'NP',
-  },
-];
-
-// Adding additional users to fill the leaderboard
-const generateLeaderboardData = () => {
-  const users = [...hardcodedUsers]; // Start with hardcoded users
-  for (let i = hardcodedUsers.length + 1; i <= 200; i++) {
-    users.push({
-      key: i.toString(),
-      rank: i,
-      username: `User ${i}`,
-      avatar: `https://randomuser.me/api/portraits/men/${i % 50 + 1}.jpg`,
-      score: Math.floor(Math.random() * 1000) + 500, // random score between 500 and 1500
-      status: i % 2 === 0 ? 'Pro User' : 'Beginner',
-      country: 'NP',
-    });
-  }
-  return users;
-};
-
-const leaderboardData = generateLeaderboardData();
-
 const Leaderboard = () => {
+  const [leaderboardData, setLeaderboardData] = useState([]);
+
+  useEffect(() => {
+    const fetchLeaderboard = async () => {
+      try {
+        const response = await fetch('http://127.0.0.1:8000/api/leaderboard/');
+        const data = await response.json();
+        // Assign a key to each item
+        const leaderboardWithKey = data.map((user, index) => ({
+          ...user,
+          key: index + 1,
+          rank: index + 1,
+          avatar: `https://randomuser.me/api/portraits/men/${index % 50 + 1}.jpg`, // fake avatar
+          status: user.score > 1300 ? 'Pro User' : 'Beginner',
+        }));
+        setLeaderboardData(leaderboardWithKey);
+      } catch (err) {
+        console.error('Failed to load leaderboard:', err);
+      }
+    };
+
+    fetchLeaderboard();
+  }, []);
+
   const columns = [
     {
       title: 'Rank',
@@ -132,25 +52,14 @@ const Leaderboard = () => {
           <Avatar src={record.avatar} />
           <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
             {record.rank <= 5 && (
-              <Tag 
-                color="#722f37" 
-                style={{ 
-                  padding: '0 2px',
-                  fontSize: '10px',
-                  lineHeight: '14px',
-                  borderRadius: '2px',
-                  margin: 0
-                }}
-              >
-                KAJI
-              </Tag>
+              <Tag color="#722f37" style={{ fontSize: '10px' }}>KAJI</Tag>
             )}
             <Text strong>{username}</Text>
             {record.status === 'Pro User' && (
-              <Tag color="green" style={{ margin: 0, fontSize: '11px' }}>PRO</Tag>
+              <Tag color="green" style={{ fontSize: '11px' }}>PRO</Tag>
             )}
           </div>
-          <img 
+          <img
             src={`https://flagcdn.com/24x18/${record.country.toLowerCase()}.png`}
             alt={`${record.country} flag`}
             style={{ width: '24px', height: '18px' }}
@@ -172,8 +81,8 @@ const Leaderboard = () => {
         dataSource={leaderboardData}
         columns={columns}
         pagination={{
-          pageSize: 10, 
-          showSizeChanger: true, 
+          pageSize: 10,
+          showSizeChanger: true,
           pageSizeOptions: ['10', '20', '50', '100'],
           showTotal: (total) => `Total ${total} items`,
         }}

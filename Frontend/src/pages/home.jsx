@@ -1,23 +1,50 @@
 import React, { useEffect, useState } from "react";
-import { Card, Button, Typography, Row, Col } from "antd";
+import { Card, Button, Typography, Row, Col, Skeleton } from "antd";
 import GitHubCalendar from "react-github-calendar";
 import { useNavigate } from 'react-router-dom'; 
 import image3 from "../assets/image(3).jpg";
-import { getCurrentUser } from "../utils/auth.js"; 
+import { getCurrentUser } from "../utils/auth.js";
 
 const { Title } = Typography;
 
 const Home = () => {
-  const [user, setUser] = useState(null); 
+  const [user, setUser] = useState(null);
+  const [stats, setStats] = useState(null);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  // ✅ fetch user on mount
+  // Fetch user and stats on mount
   useEffect(() => {
-    const fetchUser = async () => {
-      const data = await getCurrentUser();
-      setUser(data);
+    const fetchUserData = async () => {
+      try {
+        const userData = await getCurrentUser();
+        if (!userData) return;
+
+        setUser(userData);
+
+        const token = localStorage.getItem("access_token");
+
+        const statsResponse = await fetch("http://127.0.0.1:8000/api/stats/", {
+          method: "GET",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+          },
+        });
+
+        if (statsResponse.ok) {
+          const statsData = await statsResponse.json();
+          setStats(statsData);
+        } else {
+          console.error("Failed to fetch stats");
+        }
+      } catch (error) {
+        console.error("Error fetching user or stats:", error);
+      } finally {
+        setLoading(false);
+      }
     };
-    fetchUser();
+
+    fetchUserData();
   }, []);
 
   return (
@@ -31,8 +58,7 @@ const Home = () => {
         }}
       >
         <Row justify="start" align="middle" style={{ marginBottom: "32px" }}>
-          <Col>
-          </Col>
+          <Col />
           <Col
             style={{
               marginLeft: "24px",
@@ -42,18 +68,21 @@ const Home = () => {
               boxShadow: "0 8px 16px rgba(0,0,0,0.1)",
             }}
           >
-            <Title
-              level={3}
-              style={{
-                marginBottom: "8px",
-                background: "linear-gradient(90deg, #1a1a1a 0%, #4a4a4a 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
-              {/* dynamically show user */}
-              {user ? `Hi ${user.username},` : "Hi Learner,"}
-            </Title>
+            {loading ? (
+              <Skeleton active paragraph={{ rows: 1 }} />
+            ) : (
+              <Title
+                level={3}
+                style={{
+                  marginBottom: "8px",
+                  background: "linear-gradient(90deg, #1a1a1a 0%, #4a4a4a 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}
+              >
+                {user ? `Hi ${user.username},` : "Hi Learner,"}
+              </Title>
+            )}
 
             <div style={{ display: "flex", gap: "24px", marginBottom: "16px" }}>
               <div
@@ -65,7 +94,7 @@ const Home = () => {
                 }}
               >
                 <Title level={3} style={{ margin: 0, color: "white" }}>
-                  Score: 1900
+                  Score: {stats ? stats.questions_solved : "..."}
                 </Title>
               </div>
               <div
@@ -77,7 +106,7 @@ const Home = () => {
                 }}
               >
                 <Title level={3} style={{ margin: 0, color: "white" }}>
-                  Rank: 1
+                  Rank: {stats ? stats.rank : "..."}
                 </Title>
               </div>
             </div>
@@ -102,7 +131,7 @@ const Home = () => {
                 }}
               >
                 <Title level={3} style={{ margin: 0, color: "white" }}>
-                  Current Streak: 10
+                  Current Streak: {stats ? stats.login_streak : "..."}
                 </Title>
               </div>
               <div
@@ -114,7 +143,7 @@ const Home = () => {
                 }}
               >
                 <Title level={3} style={{ margin: 0, color: "white" }}>
-                  Best Streak: 15
+                  Best Streak: {stats ? stats.rank : "..."}
                 </Title>
               </div>
             </div>
@@ -130,17 +159,10 @@ const Home = () => {
               padding: "20px",
               marginTop: "20px",
               borderRadius: "8px",
-              boxShadow: "0 2px 8px rgba(0,0,0,0.1)"
+              boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
             }}
           >
-            <Title
-              level={4}
-              style={{
-                textAlign: "center",
-                marginBottom: "16px",
-                color: "#1a1a1a",
-              }}
-            >
+            <Title level={4} style={{ textAlign: "center", marginBottom: "16px", color: "#1a1a1a" }}>
               Your Activity
             </Title>
             <GitHubCalendar
@@ -177,16 +199,14 @@ const Home = () => {
             <Title level={4} style={{ marginBottom: "8px", fontSize: "18px" }}>
               Machine Learning Preparation
             </Title>
-            <p
-              style={{ color: "#595959", marginBottom: "16px", height: "40px" }}
-            >
+            <p style={{ color: "#595959", marginBottom: "16px", height: "40px" }}>
               Detailed guides to revise, learn and test your Machine Learning Knowledge.
             </p>
             <Button
               type="primary"
               block
               style={{ borderRadius: "6px", height: "38px" }}
-              onClick={() => navigate('/problems')} 
+              onClick={() => navigate("/problems")}
             >
               Explore Now
             </Button>

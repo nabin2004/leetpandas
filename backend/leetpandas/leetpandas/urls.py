@@ -20,8 +20,7 @@ from rest_framework_simplejwt.views import (TokenObtainPairView,TokenRefreshView
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from rest_framework import permissions
-from data.views import CurrentUserView
-from data.views import RegisterView
+from data.views import CurrentUserView, RegisterView, StatsView, LeaderboardView
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -44,6 +43,8 @@ urlpatterns = [
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
 
     path('api/register/', RegisterView.as_view(), name='register'),
+    path('api/stats/', StatsView.as_view(), name='stats'),
+    path('api/leaderboard/', LeaderboardView.as_view(), name='leaderboard'),
 
     #docs
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='swagger-ui'),  # Swagger UI endpoint

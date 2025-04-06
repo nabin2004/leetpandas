@@ -12,7 +12,7 @@ class Status(models.TextChoices):
     ATTEMPTED = "attempted"
 
 # Users table
-class User(models.Model):
+class UserCustom(models.Model):
     username = models.CharField(max_length=150, primary_key=True)
     firstname = models.CharField(max_length=150)
     lastname = models.CharField(max_length=150)
@@ -20,8 +20,10 @@ class User(models.Model):
 
 # Stats table
 class Stats(models.Model):
+    from django.contrib.auth import get_user_model
+    user = get_user_model()
     #user = models.OneToOneField(User.username, on_delete=models.CASCADE, related_name='stats')
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='stats')
+    user = models.OneToOneField(user, on_delete=models.CASCADE, related_name='stats')
     questions_solved = models.IntegerField(default=0)
     login_streak = models.IntegerField(default=0)
     hard_problem_solved = models.IntegerField(default=0)

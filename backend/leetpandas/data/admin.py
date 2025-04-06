@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User, Stats, MCQ, FillInTheBlanks, SQLQueries, Problems
+from .models import UserCustom, Stats, MCQ, FillInTheBlanks, SQLQueries, Problems
 
 # Custom User Admin
 class UserAdmin(admin.ModelAdmin):
@@ -47,7 +47,7 @@ class ProblemsAdmin(admin.ModelAdmin):
     ordering = ('QN',)
 
 # Register models with custom admin classes
-admin.site.register(User, UserAdmin)
+admin.site.register(UserCustom, UserAdmin)
 admin.site.register(Stats, StatsAdmin)
 admin.site.register(MCQ, MCQAdmin)
 admin.site.register(FillInTheBlanks, FillInTheBlanksAdmin)
