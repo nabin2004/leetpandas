@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Input, Button, Card, Typography, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import axios from 'axios';
 
 const { Title } = Typography;
 
 const Login = () => {
     const [credentials, setCredentials] = useState({
-        email: '',
+        username: '',
         password: ''
     });
     const navigate = useNavigate();
@@ -24,14 +25,26 @@ const Login = () => {
     // Handle form submission
     const handleSubmit = async (values) => {
         try {
-            // Replace this with your actual login API call
-            console.log('Login attempt with:', values);
+            // Send login request to backend
+            const response = await axios.post('http://127.0.0.1:8000/api/token/', {
+                username: values.username,  
+                password: values.password,
+            });
+
+            // Extract the tokens from the response
+            const { access, refresh } = response.data;
+
+            // Store the access token
+            localStorage.setItem('access_token', access);
+            localStorage.setItem('refresh_token', refresh);
+
             // On successful login:
             message.success('Login successful');
-            navigate('/dashboard');
+            navigate('/problems');  
+
         } catch (error) {
             console.error('Login failed:', error);
-            message.error('Login failed. Please try again.');
+            message.error('Login failed. Please check your credentials and try again.');
         }
     };
 
@@ -51,19 +64,19 @@ const Login = () => {
                 <Form
                     name="login-form"
                     onFinish={handleSubmit}
-                    initialValues={{ email: credentials.email, password: credentials.password }}
+                    initialValues={{ username: credentials.username, password: credentials.password }}
                 >
-                    {/* Email Field */}
+                    {/* Username Field */}
                     <Form.Item
-                        name="email"
-                        rules={[{ required: true, message: 'Please input your email!', type: 'email' }]}
+                        name="username"
+                        rules={[{ required: true, message: 'Please input your username!' }]}
                     >
                         <Input
                             prefix={<UserOutlined />}
-                            placeholder="Email"
-                            value={credentials.email}
+                            placeholder="Username"
+                            value={credentials.username}
                             onChange={handleChange}
-                            name="email"
+                            name="username"
                         />
                     </Form.Item>
 

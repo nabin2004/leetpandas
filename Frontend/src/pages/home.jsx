@@ -1,19 +1,25 @@
-import React from "react";
-import { Card, Button, Typography, Row, Col, Avatar } from "antd";
-import {
-  GithubOutlined,
-  LinkedinOutlined,
-  TwitterOutlined,
-} from "@ant-design/icons";
+import React, { useEffect, useState } from "react";
+import { Card, Button, Typography, Row, Col } from "antd";
 import GitHubCalendar from "react-github-calendar";
-import image1 from "../assets/image(1).jpg";
-import image2 from "../assets/image(2).jpg";
-import image3 from "../assets/image(3).jpg";
-const { Title, Paragraph } = Typography;
 import { useNavigate } from 'react-router-dom'; 
+import image3 from "../assets/image(3).jpg";
+import { getCurrentUser } from "../utils/auth.js"; 
+
+const { Title } = Typography;
 
 const Home = () => {
+  const [user, setUser] = useState(null); 
   const navigate = useNavigate();
+
+  // ✅ fetch user on mount
+  useEffect(() => {
+    const fetchUser = async () => {
+      const data = await getCurrentUser();
+      setUser(data);
+    };
+    fetchUser();
+  }, []);
+
   return (
     <div style={{ padding: "10px", borderRadius: "10px", backgroundColor: "#f0f2f5" }}>
       <div
@@ -45,8 +51,10 @@ const Home = () => {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              Hi Nabin Oli,
+              {/* dynamically show user */}
+              {user ? `Hi ${user.username},` : "Hi Learner,"}
             </Title>
+
             <div style={{ display: "flex", gap: "24px", marginBottom: "16px" }}>
               <div
                 style={{
@@ -73,21 +81,8 @@ const Home = () => {
                 </Title>
               </div>
             </div>
-
-            <div
-              style={{
-                marginTop: "24px",
-                display: "flex",
-                gap: "16px",
-                padding: "12px",
-                background: "rgba(255,255,255,0.8)",
-                borderRadius: "12px",
-                boxShadow: "inset 0 2px 4px rgba(0,0,0,0.05)",
-              }}
-            >
-
-            </div>
           </Col>
+
           <Col
             style={{
               marginLeft: "24px",
@@ -158,6 +153,7 @@ const Home = () => {
           </div>
         </Col>
       </Row>
+
       <Row gutter={[24, 24]} justify="center">
         <Col xs={24} sm={12} md={8} lg={6}>
           <Card
@@ -196,8 +192,6 @@ const Home = () => {
             </Button>
           </Card>
         </Col>
-
-
       </Row>
     </div>
   );
